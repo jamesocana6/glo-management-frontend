@@ -1,13 +1,18 @@
 import React from "react";
+
 import Announcements from "../../Components/Announcements/Annoucements";
 import MemberInfo from "./MemberInfo/MemberInfo"
 import { Link } from 'react-router-dom'
+import NavBar from "../../Components/NavBar/NavBar";
+
 
 const MemberDashboard = ({ props }) => {
     return (
         <>
             <div>
-                <h1>MemberDashboard Page</h1>
+               <NavBar/>
+               <h1>MemberDashboard Page</h1>
+                           
             </div>
             <p>
                 Hi First Name!

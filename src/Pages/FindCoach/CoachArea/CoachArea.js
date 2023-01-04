@@ -1,9 +1,10 @@
 import React from "react";
+import CoachCard from "../CoachCard/CoachCard";
 
 const CoachArea = ({props}) => {
     return (
         <div>
-            <h1>CoachArea Component</h1>
+            <CoachCard></CoachCard>
         </div>
     )
 } 

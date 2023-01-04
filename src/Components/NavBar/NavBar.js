@@ -23,14 +23,11 @@ const NavBar = ({ props }) => {
             </ul>
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo">Logo</a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="/">My Chapter</a></li>
-                        <li><a class="dropdown-trigger1" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a href="/">Nationals</a></li>
-                        <li><a class="dropdown-trigger2" href="#!" data-target="dropdown2">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a href="/">All Events</a></li>
-                        <li><a class="dropdown-trigger3" href="#!" data-target="dropdown3">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <a href="#!" class="brand-logo left">Logo</a>
+                    <ul class="right">
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">My Chapter<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Nationals<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">All Events<i class="material-icons right">arrow_drop_down</i></a></li>
                         <li><a href="/">Profile</a></li>
                     </ul>
                 </div>

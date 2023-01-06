@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Building, PersonCircle, PinMapFill } from 'react-bootstrap-icons';
+
 
 const Filters = ({ props }) => {
     const [filter, setFilter] = useState({
@@ -22,38 +24,42 @@ const Filters = ({ props }) => {
             <form className="col s12" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="input-field col s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <PersonCircle size={25} className="m-2"></PersonCircle>
                         <input
                             id="icon_position"
                             type="text"
                             className="validate"
-                            name="position" onChange={handleChange} />
-                        <label for="icon_position">Position</label>
+                            name="position"
+                            placeholder="Person"
+                            onChange={handleChange}
+                        />
                     </div>
 
                     <div className="input-field col s3">
-                        <i className="material-icons prefix">business</i>
+                        <Building size={25} className="m-2"></Building>
                         <input
                             id="icon_company"
                             type="text"
                             className="validate"
                             name="company"
+                            placeholder="Company"
                             onChange={handleChange} />
-                        <label for="icon_company">Company</label>
                     </div>
 
                     <div className="input-field col s3">
-                        <i className="material-icons prefix">location_city</i>
+                        <PinMapFill size={25} className="m-2"></PinMapFill>
                         <input
                             id="icon_location"
                             type="text"
                             className="validate"
                             name="location"
+                            placeholder="Location"
                             onChange={handleChange} />
-                        <label for="icon_location">Location</label>
                     </div>
 
-                    <input type="submit" className="btn" value="Search" />
+                    <div className="search col s3">
+                        <button className="btn btn-secondary">Search</button>
+                    </div>
                 </div>
             </form>
         </div>

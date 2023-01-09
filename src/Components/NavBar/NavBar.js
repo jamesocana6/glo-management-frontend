@@ -6,7 +6,7 @@ const NavBar = ({ props }) => {
         <div>
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <a className="navbar-brand" href="./dashboard">Navbar</a>
                     <div>
                         <ul className="navbar-nav justify-content-end">
                             <li className="nav-item dropdown">
@@ -14,9 +14,9 @@ const NavBar = ({ props }) => {
                                     My Chapter
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a className="dropdown-item" href="./dashboard">Dashboard</a></li>
+                                    <li><a className="dropdown-item" href="./findcoach">Find a Coach</a></li>
+                                    <li><a className="dropdown-item" href="./jobhub">Job Hub</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">

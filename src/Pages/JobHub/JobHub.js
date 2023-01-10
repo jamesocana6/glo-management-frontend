@@ -1,7 +1,7 @@
 import React from "react";
 import Banner from "../../Components/Banner/Banner";
 import NavBar from "../../Components/NavBar/NavBar";
-import JobOps from "./JobOps/JobOps"
+import JobArea from "./JobArea/JobArea";
 
 const JobHub = ({ props }) => {
     return (
@@ -12,10 +12,7 @@ const JobHub = ({ props }) => {
                     bannerText={"JobHub Page"}
                 />
             </div>
-            <JobOps />
-            <div>
-                <h1>Resources TBD</h1>
-            </div>
+            <JobArea/>
         </>
     )
 }

@@ -4,7 +4,7 @@ const JobOps = ({ props }) => {
     return (
         <>
             <div>
-                <h1>Job Opportunities</h1>
+                <h3>Job Opportunities</h3>
             </div>
             <p>
                 Title @ Company 1 location <br></br>

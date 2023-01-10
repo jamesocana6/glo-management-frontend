@@ -8,8 +8,9 @@ const JobHub = ({ props }) => {
         <>
             <div>
                 <NavBar/>
-                <Banner/>
-                <h1>JobHub Page</h1>
+                <Banner 
+                    bannerText={"JobHub Page"}
+                />
             </div>
             <JobOps />
             <div>

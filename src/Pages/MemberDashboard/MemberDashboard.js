@@ -24,8 +24,8 @@ const MemberDashboard = ({ props }) => {
             </p>
             <p>
                 National Resources<br></br>
-                <Link to="../findcoach">Find a Coach</Link><br></br>
-                <Link to="../jobhub">Job Hub - Opps & Resources</Link><br></br>
+                <Link to="/findcoach">Find a Coach</Link><br></br>
+                <Link to="/jobhub">Job Hub - Opps & Resources</Link><br></br>
                 Support other Sister's Businesses<br></br>
             </p>
             <p>

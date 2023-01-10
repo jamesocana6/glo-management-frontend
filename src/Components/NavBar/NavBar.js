@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 const NavBar = ({ props }) => {
@@ -14,9 +15,9 @@ const NavBar = ({ props }) => {
                                     My Chapter
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="./dashboard">Dashboard</a></li>
-                                    <li><a className="dropdown-item" href="./findcoach">Find a Coach</a></li>
-                                    <li><a className="dropdown-item" href="./jobhub">Job Hub</a></li>
+                                    <Link className="dropdown-item" to={"/dashboard"}>Dashboard</Link>
+                                    <Link className="dropdown-item" to={"/findcoach"}>Find a Coach</Link>
+                                    <Link className="dropdown-item" to={"/jobhub"}>Job Hub</Link>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">

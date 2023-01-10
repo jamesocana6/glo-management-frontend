@@ -1,4 +1,5 @@
 import React from "react";
+import Banner from "../../Components/Banner/Banner";
 import NavBar from "../../Components/NavBar/NavBar";
 import JobOps from "./JobOps/JobOps"
 
@@ -7,6 +8,7 @@ const JobHub = ({ props }) => {
         <>
             <div>
                 <NavBar/>
+                <Banner/>
                 <h1>JobHub Page</h1>
             </div>
             <JobOps />

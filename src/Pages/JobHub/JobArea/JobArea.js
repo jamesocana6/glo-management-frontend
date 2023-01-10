@@ -6,13 +6,17 @@ import "./style.css";
 const JobArea = ({ props }) => {
     return (
         <div className="container">
-            <div className="row">
+            <div className="row gx-5">
                 <h1>Job Area</h1>
-                <div className="col-8 job-ops">
-                    <JobOps/>
+                <div className="col-8">
+                    <div className="job-ops">
+                        <JobOps/>
+                    </div>
                 </div>
-                <div className="col-4 job-resources">
-                    <Resources/>
+                <div className="col-4">
+                    <div className="job-resources">
+                        <Resources/>
+                    </div>
                 </div>
             </div>
         </div>

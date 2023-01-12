@@ -13,7 +13,6 @@ const MemberDashboard = ({ props }) => {
                 <NavBar />
                 <h1>MemberDashboard Page</h1>
                 Hi First Name!
-
             </div>
 
             <div className="container-fluid">

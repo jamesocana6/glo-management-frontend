@@ -13,13 +13,7 @@ const JobOps = ({ jobsList, getJobsList }) => {
             return (
                 <div style={{ backgroundColor: 'orange' }} key={job.pub_date}>
                     <p>
-                        Company: {job.company_name}
-                    </p>
-                    <p>
-                        Title: {job.job_title}
-                    </p >
-                    <p>
-                        Description: {job.description}
+                        {job.jobTitle} - {job.companyName} - {job.experienceRequired} - {job.location}
                     </p>
                 </div>
             )
@@ -50,16 +44,23 @@ const JobOps = ({ jobsList, getJobsList }) => {
                     <Link to={"/jobhub/add"}>Add a Job</Link>
                 </div>
             </div>
-
-            {jobsList ? loaded() : loading()}
-
-            <p>
-                Add a Job(link)
-            </p>
-            <p>
-                See all job Opportunities
-            </p>
-        </div >
+            <div className="row">
+                <div className="col">
+                    <div className="text-start overflow-auto" style={{height: 30 +"vh"}}>
+                        {jobsList ? loaded() : loading()}
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <div>
+                        <p>
+                            {/* See all job Opportunities */}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

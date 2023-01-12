@@ -55,7 +55,7 @@ const JobOps = ({ jobsList, getJobsList }) => {
                 <div className="col">
                     <div>
                         <p>
-                            See all job Opportunities
+                            {/* See all job Opportunities */}
                         </p>
                     </div>
                 </div>

@@ -25,7 +25,7 @@ const CoachCard = ({ props }) => {
     const [cardId, setCardId] = useState(0)
 
     const handleClick = (event) => {
-        setCardId(event.target.closest("div").getAttribute("cardId"))
+        setCardId(event.target.closest("div").getAttribute("cardid"))
     }
 
     return (
@@ -33,14 +33,15 @@ const CoachCard = ({ props }) => {
             <div className="row">
                 {people.map((person, index) => {
                     return (
-                        <div className="card m-2" cardId={index} style={{ width: '18rem' }}>
+                        <div className="card m-2" cardid={index} key={person.name} style={{ width: '18rem' }}>
                             <img className="card-img-top" src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" />
                             <div className="card-body" style={{ textAlign: 'left' }}>
-                                <h5 className="card-title">{person.name}
+                                <div className="card-title">
+                                    <p className="card-text">{person.name}</p>
                                     <p className="card-text">{person.position}</p>
                                     <p className="card-text">{person.company}</p>
                                     <p className="card-text">{person.location}</p>
-                                </h5>
+                                </div>
                             </div>
                             <button className="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleClick}>Open Modal</button>
 

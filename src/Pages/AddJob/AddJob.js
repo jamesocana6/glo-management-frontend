@@ -1,11 +1,12 @@
 import React from "react";
+import Banner from "../../Components/Banner/Banner";
 import NavBar from "../../Components/NavBar/NavBar";
 
 const AddJob = ({props}) => {
     return (
         <div>
             <NavBar/>
-            <h1>AddJob Page</h1>
+            <Banner bannerText={"Add a Job"}/>
         </div>
     )
 } 

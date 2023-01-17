@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import JobModal from "../JobModal/JobModal";
 
 const JobOps = ({ jobsList, getJobsList }) => {
     console.log('JobOps.js: jobsList', jobsList)
@@ -9,11 +10,13 @@ const JobOps = ({ jobsList, getJobsList }) => {
     }, [])
 
     const loaded = () => {
-        let allJobs = jobsList.map((job) => {
+        let allJobs = jobsList.map((job, index) => {
             return (
-                <div style={{ backgroundColor: 'orange' }} key={job.pub_date}>
+                //CHANGE id={"jobModal"+post.date} to post.id
+                <div style={{ backgroundColor: 'orange' }} key={job.date} data-bs-toggle="modal" data-bs-target={"#jobModal"+job.date}>
                     <p>
                         {job.jobTitle} - {job.companyName} - {job.experienceRequired} - {job.location}
+                        <JobModal post={job} postIdx={index} />
                     </p>
                 </div>
             )

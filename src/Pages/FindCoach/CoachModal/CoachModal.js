@@ -7,7 +7,7 @@ const CoachModal = ({ people, cardId }) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" style={{ width: 100 }} />
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">
+                        <div className="modal-title fs-5" id="exampleModalLabel">
                             <p>
                                 Name: {people[cardId].name}
                             </p>
@@ -19,11 +19,11 @@ const CoachModal = ({ people, cardId }) => {
                             </p>
                             {people[cardId].tags.map(tag => {
                                 return (
-                                    <button className="btn btn-secondary m-1">{tag}</button>
+                                    <button className="btn btn-secondary m-1" key={tag}>{tag}</button>
                                 )
                             })}
-                        </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
                         <p>

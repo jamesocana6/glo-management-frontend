@@ -18,37 +18,39 @@ const JobModal = ({post, postIdx}) => {
     return (
         //CHANGE id={"jobModal"+post.date} to post.id
         <div className="modal fade" id={"jobModal"+post.date} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" style={{ width: 100 }} />
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">
-                            <p>HELLO MODALS!</p>
+                        <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" style={{ width: 200, paddingRight: 20 }} />
+                        <div className="modal-title fs-5" id="exampleModalLabel">
+                            <h2>{post.jobTitle}</h2>
+                            <h3>
+                                {post.companyName} - {post.experienceRequired} - {post.location} 
+                            </h3>
+                            {post.industry && 
                             <p>
-                                Name: {post.jobTitle}
+                                Industry: {post.industry}
                             </p>
+                            }
                             <p>
-                                Company: {post.companyName}
-                            </p>
-                            <p>
-                                Location: {post.location}
-                            </p>
-                            {/* {people[cardId].tags.map(tag => {
-                                return (
-                                    <button className="btn btn-secondary m-1">{tag}</button>
-                                )
-                            })} */}
-                        </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                Job Link: {post.jobLink}
+                            </p>  
+                        </div>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
+                        <h3>How To Apply</h3>
                         <p>
-                            Info about yourself and why you want to coach
-                            Info about yourself and why you want to coach
-                            Info about yourself and why you want to coach
-                            Info about yourself and why you want to coach
-                            Info about yourself and why you want to coach
+                            {post.howToApply}
                         </p>
+                        {post.jobDescription &&
+                            <>
+                                <h3>Job Description</h3>
+                                <p>
+                                    {post.jobDescription}
+                                </p>
+                            </>
+                        }
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary">Get In Contact</button>

@@ -32,6 +32,18 @@ const JobHub = ({ props }) => {
             poster: "Steve Jobs",
         },
         {
+            date: "1/15/2023",
+            jobTitle: "Web Developer",
+            companyName: "JP Morgan & Chase",
+            jobLink: "#",
+            location: "New York, NY",
+            howToApply: "Use my name in the referral",
+            experienceRequired: "Entry-Level",
+            industry: "",
+            jobDescription: "",
+            poster: "Steve Jobs",
+        },
+        {
             date: "1/10/2023",
             jobTitle: "Software Engineer",
             companyName: "Tesla",

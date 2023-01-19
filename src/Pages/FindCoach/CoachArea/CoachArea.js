@@ -1,12 +1,15 @@
 import React from "react";
 import CoachCard from "../CoachCard/CoachCard";
 
-const CoachArea = ({props}) => {
+const CoachArea = ({ sisters, getSisters }) => {
     return (
         <div>
-            <CoachCard></CoachCard>
+            <CoachCard
+                sisters={sisters}
+                getSisters={getSisters}
+            />
         </div>
     )
-} 
+}
 
 export default CoachArea;

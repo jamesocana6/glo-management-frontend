@@ -4,15 +4,18 @@ import NavBar from "../../Components/NavBar/NavBar";
 import CoachArea from "./CoachArea/CoachArea";
 import Filters from "./Filters/Filters";
 
-const FindCoach = ({props}) => {
+const FindCoach = ({ sisters, getSisters }) => {
     return (
         <div>
-            <NavBar/>
-            <Banner bannerText={"Find a Coach"}/>
+            <NavBar />
+            <Banner bannerText={"Find a Coach"} />
             <Filters></Filters>
-            <CoachArea></CoachArea>
+            <CoachArea
+                sisters={sisters}
+                getSisters={getSisters}
+            />
         </div>
     )
-} 
+}
 
 export default FindCoach;

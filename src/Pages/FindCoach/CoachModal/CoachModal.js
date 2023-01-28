@@ -1,19 +1,18 @@
 import React from "react";
 
 const CoachModal = ({ sister }) => {
-    console.log(sister)
-    
+    // top section of modal
     const loaded = () => {
         return (
-            <div className="modal-title fs-5" id="exampleModalLabel">
+            <div className="modal-title fs-5" id={"coachModal" + sister.id}>
                 <p>
-                    Name: {sister.first_name} {sister.last_name}
+                    Name: {sister.first_name_txt} {sister.last_name_txt}
                 </p>
                 <p>
-                    Company: {sister.current_company}
+                    Company: {sister.current_company_txt}
                 </p>
                 <p>
-                    Location: {sister.current_location}
+                    Location: {sister.current_city_txt}
                 </p>
             </div>
         )
@@ -22,13 +21,13 @@ const CoachModal = ({ sister }) => {
     const loading = () => {
         return (
             <>
-                There are no sisters..
+                There is no sister info
             </>
         )
     }
 
     return (
-        <div className="modal fade" id={"coachModal"+sister.email_address} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={"coachModal" + sister.nickname_txt} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">

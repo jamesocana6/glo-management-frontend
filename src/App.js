@@ -1,25 +1,29 @@
-import { useState } from 'react';
-import { Route, Routes } from 'react-router';
+import { useState, useEffect } from 'react';
+import { Route, Routes, Navigate } from 'react-router';
+
 import './App.css';
+
 import AddJob from './Pages/AddJob/AddJob';
 import FindCoach from './Pages/FindCoach/FindCoach';
 import JobHub from './Pages/JobHub/JobHub';
 import Landing from './Pages/Landing/Landing';
 import MemberDashboard from './Pages/MemberDashboard/MemberDashboard';
 import NewCoach from './Pages/NewCoach/NewCoach';
-import { Navigate } from 'react-router';
+
 
 function App() {
+  // state for sisters from DB
   const [sisters, setSisters] = useState(null)
   console.log("Sisters", sisters)
 
-  // state for updated sisters
+  // state for filtered sisters
   const [filteredSisters, setFilteredSisters] = useState(sisters)
   console.log("Filtered Sisters", filteredSisters)
 
   const onSisterFilterSubmit = (filter) => {
     if (filter.position === '' && filter.company === '' && filter.location === '') {
       setFilteredSisters(sisters)
+      return
     }
 
     if (filter.position) {
@@ -32,7 +36,6 @@ function App() {
           let locationFilter = companyFilter.filter(sister => sister.current_city_txt.includes(filter.location))
 
           setFilteredSisters(locationFilter)
-          return
         }
 
         setFilteredSisters(companyFilter)
@@ -42,7 +45,6 @@ function App() {
         console.log('Current City Filter', locationFilter)
 
         setFilteredSisters(locationFilter)
-        return
       }
       
       setFilteredSisters(positionFilter)
@@ -70,7 +72,12 @@ function App() {
     const data = await response.json()
 
     setSisters(data)
+    setFilteredSisters(data)
   }
+
+  useEffect(() => {
+    getSisters()
+}, [])
 
   return (
     <div className="App">
@@ -83,7 +90,7 @@ function App() {
         <Route
           path="/findcoach"
           element={<FindCoach
-            sisters={sisters}
+            filteredSisters={filteredSisters}
             getSisters={getSisters}
             onSisterFilterSubmit={onSisterFilterSubmit}
           />}

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CoachModal from "../CoachModal/CoachModal";
 
-const CoachCard = ({ sisters, getSisters }) => {
+const CoachCard = ({ filteredSisters }) => {
     const loaded = () => {
-        let allSisters = sisters.map((sister) => {
+        let allSisters = filteredSisters.map((sister) => {
             return (
                 <div className="card m-2" key={sister.id} style={{ width: '18rem' }}>
                     <img className="card-img-top" src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" />
@@ -19,7 +19,6 @@ const CoachCard = ({ sisters, getSisters }) => {
 
                     <CoachModal
                         sister={sister}
-                        getSisters={getSisters}
                     />
                 </div>
             )
@@ -34,20 +33,16 @@ const CoachCard = ({ sisters, getSisters }) => {
 
     const loading = () => {
         return (
-            <>
+            <div>
                 There are no sisters..
-            </>
+            </div>
         )
     }
-
-    useEffect(() => {
-        getSisters()
-    }, [])
 
     return (
         <div className="container-fluid">
             <div className="row">
-                {sisters ? loaded() : loading()}
+                {filteredSisters ? loaded() : loading()}
             </div>
         </div>
     )

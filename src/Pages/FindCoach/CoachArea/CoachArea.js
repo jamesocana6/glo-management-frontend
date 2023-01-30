@@ -1,11 +1,11 @@
 import React from "react";
 import CoachCard from "../CoachCard/CoachCard";
 
-const CoachArea = ({ sisters, getSisters }) => {
+const CoachArea = ({ filteredSisters, getSisters }) => {
     return (
         <div>
             <CoachCard
-                sisters={sisters}
+                filteredSisters={filteredSisters}
                 getSisters={getSisters}
             />
         </div>

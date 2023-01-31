@@ -21,19 +21,23 @@ function App() {
   console.log("Filtered Sisters", filteredSisters)
 
   const onSisterFilterSubmit = (filter) => {
+    filter.position.toLowerCase()
+    filter.company.toLowerCase()
+    filter.location.toLowerCase()
+
     if (filter.position === '' && filter.company === '' && filter.location === '') {
       setFilteredSisters(sisters)
       return
     }
 
     if (filter.position) {
-      let positionFilter = sisters.filter(sister => sister.current_position_txt.includes(filter.position))
+      let positionFilter = sisters.filter(sister => sister.current_position_txt.toLowerCase().includes(filter.position))
 
       if (filter.company) {
-        let companyFilter = positionFilter.filter(sister => sister.current_company_txt.includes(filter.company))
+        let companyFilter = positionFilter.filter(sister => sister.current_company_txt.toLowerCase().includes(filter.company))
 
         if (filter.location) {
-          let locationFilter = companyFilter.filter(sister => sister.current_city_txt.includes(filter.location))
+          let locationFilter = companyFilter.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
 
           setFilteredSisters(locationFilter)
         }
@@ -41,8 +45,7 @@ function App() {
         setFilteredSisters(companyFilter)
       }
       else if (filter.location) {
-        let locationFilter = positionFilter.filter(sister => sister.current_city_txt.includes(filter.location))
-        console.log('Current City Filter', locationFilter)
+        let locationFilter = positionFilter.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
 
         setFilteredSisters(locationFilter)
       }
@@ -50,10 +53,10 @@ function App() {
       setFilteredSisters(positionFilter)
     }
     else if (filter.company) {
-      let companyFilter = sisters.filter(sister => sister.current_company_txt.includes(filter.company))
+      let companyFilter = sisters.filter(sister => sister.current_company_txt.toLowerCase().includes(filter.company))
 
       if (filter.location) {
-        let locationFilter = companyFilter.filter(sister => sister.current_city_txt.includes(filter.location))
+        let locationFilter = companyFilter.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
 
         setFilteredSisters(locationFilter)
       }
@@ -61,7 +64,7 @@ function App() {
       setFilteredSisters(companyFilter)
     }
     else if (filter.location) {
-      let locationFilter = sisters.filter(sister => sister.current_city_txt.includes(filter.location))
+      let locationFilter = sisters.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
 
       setFilteredSisters(locationFilter)
     }

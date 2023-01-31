@@ -1,27 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Building, PersonCircle, PinMapFill } from 'react-bootstrap-icons';
 
 
-const Filters = ({ props }) => {
-    const [filter, setFilter] = useState({
-        position: '',
-        company: '',
-        location: '',
-    })
-
-    const handleChange = (event) => {
-        console.log(event.target.value)
-        setFilter({ ...filter, [event.target.name]: event.target.value })
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log("filter", filter)
-    }
-
+const Filters = ({ handleFilterChange, handleFilterSubmit }) => {
     return (
         <div className="row">
-            <form className="col s12" onSubmit={handleSubmit}>
+            <form className="col s12" onSubmit={handleFilterSubmit}>
                 <div className="row">
                     <div className="input-field col s3">
                         <PersonCircle size={25} className="m-2"></PersonCircle>
@@ -30,8 +14,8 @@ const Filters = ({ props }) => {
                             type="text"
                             className="validate"
                             name="position"
-                            placeholder="Person"
-                            onChange={handleChange}
+                            placeholder="Position"
+                            onChange={handleFilterChange}
                         />
                     </div>
 
@@ -43,7 +27,7 @@ const Filters = ({ props }) => {
                             className="validate"
                             name="company"
                             placeholder="Company"
-                            onChange={handleChange} />
+                            onChange={handleFilterChange} />
                     </div>
 
                     <div className="input-field col s3">
@@ -54,7 +38,7 @@ const Filters = ({ props }) => {
                             className="validate"
                             name="location"
                             placeholder="Location"
-                            onChange={handleChange} />
+                            onChange={handleFilterChange} />
                     </div>
 
                     <div className="search col s3">

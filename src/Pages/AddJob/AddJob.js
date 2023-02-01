@@ -2,7 +2,9 @@ import React from "react";
 import Banner from "../../Components/Banner/Banner";
 import NavBar from "../../Components/NavBar/NavBar";
 
-const AddJob = ({props}) => {
+const AddJob = () => {
+    // useEffect(()=> {getSisters()}, [])
+    // console.log(sisters)
     const postURL = `http://localhost:8000/api/jobs/`
 
     const createPost = async (post) => {
@@ -25,7 +27,11 @@ const AddJob = ({props}) => {
         } else {
             formJson.remote_role_fg = false 
         }
-        formJson["poster_nb"] = 1;
+        //ADD poster_nb from user logged in
+        // if (sisters) {
+        //     formJson["poster_nb"] = sisters[0].id;
+
+        // }
         createPost(formJson);
         console.log(formJson);
     }

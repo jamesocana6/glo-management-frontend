@@ -36,7 +36,9 @@ function App() {
         />
         <Route path="/findcoach/add" element={<NewCoach />} />
         <Route path="/jobhub" element={<JobHub />} />
-        <Route path="/jobhub/add" element={<AddJob />} />
+        <Route path="/jobhub/add" element={<AddJob 
+        sisters={sisters}
+        getSisters={getSisters}/>} />
       </Routes>
     </div>
   );

@@ -2,19 +2,6 @@ import React from "react";
 
 const JobModal = ({post, postIdx}) => {
 
-    // {
-    //     date: "1/10/2023",
-    //     jobTitle: "Software Engineer",
-    //     companyName: "Tesla",
-    //     jobLink: "#",
-    //     location: "Remote",
-    //     howToApply: "Message the job poster with resume and I will give it to the recruiter",
-    //     experienceRequired: "Entry-Level",
-    //     industry: "Automotive",
-    //     jobDescription: "",
-    //     poster: "Elon Musk",
-    // }, 
-
     return (
         //CHANGE id={"jobModal"+post.date} to post.id
         <div className="modal fade" id={"jobModal"+post.date} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

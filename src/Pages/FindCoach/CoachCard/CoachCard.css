@@ -1,0 +1,19 @@
+.coach-card {
+    padding: 0;
+    width: 14rem;
+}
+
+.coach-card-img {
+    height: 240px;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10%;
+}
+
+.coach-card-text {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.coach-card-body {
+    padding: 0 15px 0 15px;
+}

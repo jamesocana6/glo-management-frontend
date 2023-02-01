@@ -4,15 +4,15 @@ const CoachModal = ({ sister }) => {
     // top section of modal
     const loaded = () => {
         return (
-            <div className="modal-title fs-5" id={"coachModal" + sister.id}>
-                <p>
-                    Name: {sister.first_name_txt} {sister.last_name_txt}
+            <div className="modal-title fs-5 m-2" id={"coachModal" + sister.id}>
+                <p className="card-text coach-modal-heading-text" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+                    {sister.first_name_txt} {sister.last_name_txt}
                 </p>
-                <p>
-                    Company: {sister.current_company_txt}
+                <p className="card-text coach-modal-heading-text">
+                    {sister.current_company_txt}
                 </p>
-                <p>
-                    Location: {sister.current_city_txt}
+                <p className="card-text coach-modal-heading-text">
+                    {sister.current_city_txt}
                 </p>
             </div>
         )
@@ -27,11 +27,17 @@ const CoachModal = ({ sister }) => {
     }
 
     return (
-        <div className="modal fade" id={"coachModal" + sister.nickname_txt} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+            className="modal fade"
+            id={"coachModal" + sister.nickname_txt}
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
-                    <div className="modal-header">
-                        <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" style={{ width: 100 }} />
+                    <div className="modal-header p-3">
+                        <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" className="modal-image" />
                         {sister ? loaded() : loading()}
 
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

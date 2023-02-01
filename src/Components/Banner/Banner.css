@@ -1,0 +1,7 @@
+.banner-container {
+    height: 3rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('https://imgur.com/JBZZxqT.jpg');
+    background-repeat: no-repeat;
+}

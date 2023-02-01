@@ -5,17 +5,22 @@ const CoachCard = ({ filteredSisters }) => {
     const loaded = () => {
         let allSisters = filteredSisters.map((sister) => {
             return (
-                <div className="card m-2" key={sister.id} style={{ width: '18rem' }}>
-                    <img className="card-img-top" src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" />
-                    <div className="card-body" style={{ textAlign: 'left' }}>
+                <div
+                    className="card coach-card m-2"
+                    key={sister.id}
+                    data-bs-toggle="modal"
+                    data-bs-target={"#coachModal" + sister.nickname_txt}
+                >
+                    <img className="card-img-top coach-card-img" src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" />
+
+                    <div className="card-body coach-card-body" style={{ textAlign: 'left' }}>
                         <div className="card-title">
-                            <p className="card-text">{sister.first_name_txt} {sister.last_name_txt}</p>
-                            <p className="card-text">{sister.current_position_txt}</p>
-                            <p className="card-text">{sister.current_company_txt}</p>
-                            <p className="card-text">{sister.current_city_txt}</p>
+                            <p className="card-text coach-card-text" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>{sister.first_name_txt} {sister.last_name_txt}</p>
+                            <p className="card-text coach-card-text">{sister.current_position_txt}</p>
+                            <p className="card-text coach-card-text">{sister.current_company_txt}</p>
+                            <p className="card-text coach-card-text">{sister.current_city_txt}</p>
                         </div>
                     </div>
-                    <button className="btn btn-secondary m-3" data-bs-toggle="modal" data-bs-target={"#coachModal" + sister.nickname_txt}>Open Modal</button>
 
                     <CoachModal
                         sister={sister}

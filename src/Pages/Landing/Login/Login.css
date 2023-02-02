@@ -1,0 +1,70 @@
+.home-header {
+    background-color: #ce0037;
+    color: #fff;
+    /* background-image: url(../../../assets/login-bg.png); */
+    /* background-size: contain; */
+    background-repeat: no-repeat;
+    /* background-position: center 110%; */
+}
+
+.home-header .row {
+    padding-top: 80px;
+    padding-bottom: 170px;
+}
+
+.promo-text-box {
+    margin-top: 15%;
+}
+
+.promo-text-box h1 {
+    margin-bottom: 25px;
+}
+
+.play-btn {
+    font-size: 20px;
+    margin: 20px;
+    color: white;
+    letter-spacing: 5px;
+}
+
+.lead-form {
+    width: 350px;
+    background: #fff;
+    margin: 10px auto;
+    border-radius: 3px;
+}
+
+.title-box {
+    background-color: #ac012e;
+    height: 150px;
+    padding-top: 30px;
+    border: 1px solid rgb(214, 214, 214);
+    border-bottom-left-radius: 200px 30px;
+    border-bottom-right-radius: 200px 30px;
+}
+
+.input-box {
+    width: 280px;
+    height: 40px;
+    padding: 0px 5px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.input-box::placeholder {
+    color: #999;
+}
+
+.submit-btn {
+    width: 280px;
+    height: 60px;
+    color: #fff;
+    font-weight: 600;
+    background-color: #ac012e;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-bottom: -20px;
+}

@@ -3,13 +3,13 @@ import { Route, Routes, Navigate } from 'react-router';
 
 import './App.css';
 
-import AddJob from './Pages/AddJob/AddJob';
-import FindCoach from './Pages/FindCoach/FindCoach';
-import JobHub from './Pages/JobHub/JobHub';
 import Landing from './Pages/Landing/Landing';
 import MemberDashboard from './Pages/MemberDashboard/MemberDashboard';
+import Profile from './Pages/Profile/Profile';
 import NewCoach from './Pages/NewCoach/NewCoach';
-
+import FindCoach from './Pages/FindCoach/FindCoach';
+import JobHub from './Pages/JobHub/JobHub';
+import AddJob from './Pages/AddJob/AddJob';
 
 function App() {
   // state for sisters from DB
@@ -49,7 +49,7 @@ function App() {
 
         setFilteredSisters(locationFilter)
       }
-      
+
       setFilteredSisters(positionFilter)
     }
     else if (filter.company) {
@@ -60,7 +60,7 @@ function App() {
 
         setFilteredSisters(locationFilter)
       }
-      
+
       setFilteredSisters(companyFilter)
     }
     else if (filter.location) {
@@ -80,16 +80,17 @@ function App() {
 
   useEffect(() => {
     getSisters()
-}, [])
+  }, [])
 
   return (
     <div className="App">
-      {/* <Profile/> */}
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
       <Routes>
         <Route path="/" element={<Navigate to='/login' />} />
         <Route path="/login" element={<Landing />} />
+
         <Route path="/dashboard" element={<MemberDashboard />} />
+
         <Route
           path="/findcoach"
           element={<FindCoach
@@ -99,10 +100,11 @@ function App() {
           />}
         />
         <Route path="/findcoach/add" element={<NewCoach />} />
+
         <Route path="/jobhub" element={<JobHub />} />
-        <Route path="/jobhub/add" element={<AddJob 
-        sisters={sisters}
-        getSisters={getSisters}/>} />
+        <Route path="/jobhub/add" element={<AddJob />} />
+
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );

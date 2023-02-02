@@ -4,37 +4,33 @@ const JobModal = ({post, postIdx}) => {
 
     return (
         //CHANGE id={"jobModal"+post.date} to post.id
-        <div className="modal fade" id={"jobModal"+post.date} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={"jobModal"+post.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
                         <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" style={{ width: 200, paddingRight: 20 }} />
                         <div className="modal-title fs-5" id="exampleModalLabel">
-                            <h2>{post.jobTitle}</h2>
+                            <h2>{post.job_title_txt}</h2>
                             <h3>
-                                {post.companyName} - {post.experienceRequired} - {post.location} 
+                                {post.company_name_txt} - {post.level_of_opening_txt} - {post.city_txt}, {post.state_txt}
                             </h3>
-                            {post.industry && 
+                            {post.industry_txt && 
                             <p>
-                                Industry: {post.industry}
+                                Industry: {post.industry_txt}
                             </p>
                             }
                             <p>
-                                Job Link: {post.jobLink}
+                                <span>Job Link:</span> <a href={post.job_link_txt} target="_blank">Job Posting</a>
                             </p>  
                         </div>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        <h3>How To Apply</h3>
-                        <p>
-                            {post.howToApply}
-                        </p>
-                        {post.jobDescription &&
+                        {post.description_txt &&
                             <>
                                 <h3>Job Description</h3>
                                 <p>
-                                    {post.jobDescription}
+                                    {post.description_txt}
                                 </p>
                             </>
                         }

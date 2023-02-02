@@ -12,10 +12,9 @@ const JobOps = ({ jobsList, getJobsList }) => {
     const loaded = () => {
         let allJobs = jobsList.map((job, index) => {
             return (
-                //CHANGE id={"jobModal"+post.date} to post.id
-                <div style={{ backgroundColor: 'orange' }} key={job.date} data-bs-toggle="modal" data-bs-target={"#jobModal"+job.date}>
+                <div style={{ backgroundColor: 'orange' }} key={job.id} data-bs-toggle="modal" data-bs-target={"#jobModal"+job.id}>
                     <p>
-                        {job.jobTitle} - {job.companyName} - {job.experienceRequired} - {job.location}
+                        {job.job_title_txt} - {job.company_name_txt} - {job.level_of_opening_txt} - {job.city_txt}, {job.state_txt}
                         <JobModal post={job} postIdx={index} />
                     </p>
                 </div>

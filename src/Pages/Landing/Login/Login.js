@@ -1,21 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-const Login = ({ props }) => {
-    const [login, setLogin] = useState({
-        username: "",
-        password: "",
-    })
-
-    const handleChange = (event) => {
-        console.log(event.target.value)
-    }
-
-    const handleLogin = () => {
-        console.log("Login")
-        // if login successful, redirect to dashboard
-        // else invalid username/password
-    }
-
+const Login = ({ handleChange, handleLogin }) => {
     return (
         <section className="home-header">
             <div className="container">
@@ -31,13 +17,17 @@ const Login = ({ props }) => {
                             <div className="title-box">
                                 <h3>Welcome to GLO Management</h3>
                             </div>
-                            <form action={handleLogin}>
+                            <form
+                                className="needs-validation"
+                                onSubmit={handleLogin}
+                            >
                                 <input
                                     type="text"
                                     name="email"
                                     placeholder="Email"
                                     onChange={handleChange}
                                     className="input-box"
+                                    required
                                 />
                                 <input
                                     type="password"
@@ -45,8 +35,9 @@ const Login = ({ props }) => {
                                     placeholder="Password"
                                     onChange={handleChange}
                                     className="input-box"
+                                    required
                                 />
-                                <button type="button" className="submit-btn">Login</button>
+                                <button className="submit-btn">Login</button>
                             </form>
                         </div>
                     </div>

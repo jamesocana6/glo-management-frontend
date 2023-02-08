@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 import Announcements from "../../Components/Announcements/Annoucements";
 import MemberInfo from "./MemberInfo/MemberInfo"
@@ -46,7 +47,7 @@ const MemberDashboard = ({ props }) => {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default MemberDashboard;

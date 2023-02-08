@@ -1,9 +1,12 @@
 import React from "react";
 import Login from "./Login/Login";
 
-const Landing = ({ props }) => {
+const Landing = ({ handleChange, handleLogin }) => {
     return (
-        <Login />
+        <Login
+            handleChange={handleChange}
+            handleLogin={handleLogin}
+        />
     )
 }
 

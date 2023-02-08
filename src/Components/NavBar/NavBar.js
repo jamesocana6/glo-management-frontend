@@ -47,10 +47,10 @@ const NavBar = ({ props }) => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg" style={{padding: '2px'}}>
+            <nav className="navbar navbar-expand-lg" style={{ padding: '2px' }}>
                 <div className="container-fluid">
                     <a className="navbar-brand" href="./dashboard">
-                        <img src={kplLogo} style={{width: '110px'}}/>
+                        <img src={kplLogo} style={{ width: '110px' }} />
                     </a>
                     <div>
                         <ul className="navbar-nav justify-content-end">
@@ -94,10 +94,20 @@ const NavBar = ({ props }) => {
                                 </ul>
                             </li>
 
-                            {/* Profile */}
-                            <li className="nav-item">
-                                <Link className="nav-link" to={"/profile"}><Person size={25} /></Link>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <Person size={25} />
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <Link className="nav-link" to={"/profile"}>Edit Profile</Link>
+                                    <Link className="dropdown-item" to={"/login"} onClick={localStorage.clear()}>Logout</Link>
+                                </ul>
                             </li>
+
+                            {/* Profile */}
+                            {/* <li className="nav-item">
+                                <Link className="nav-link" to={"/profile"}><Person size={25} /></Link>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

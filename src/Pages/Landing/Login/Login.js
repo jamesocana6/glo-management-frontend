@@ -1,19 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Login = ({ props }) => {
+    const navigate = useNavigate()
+
     const [login, setLogin] = useState({
-        username: "",
+        email: "",
         password: "",
     })
 
+    const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
+
+
     const handleChange = (event) => {
-        console.log(event.target.value)
+        setLogin({ ...login, [event.target.name]: event.target.value })
     }
 
-    const handleLogin = () => {
-        console.log("Login")
+    const handleLogin = (event) => {
+        event.preventDefault()
         // if login successful, redirect to dashboard
-        // else invalid username/password
+        if (login.email === "echo@gmail.com" && login.password === "123") {
+            setAuthenticated(true)
+            localStorage.setItem("authenticated", true)
+            navigate("/dashboard")
+        } else {
+            // else invalid username/password
+        }
     }
 
     return (
@@ -31,13 +43,17 @@ const Login = ({ props }) => {
                             <div className="title-box">
                                 <h3>Welcome to GLO Management</h3>
                             </div>
-                            <form action={handleLogin}>
+                            <form
+                                className="needs-validation"
+                                onSubmit={handleLogin}
+                            >
                                 <input
                                     type="text"
                                     name="email"
                                     placeholder="Email"
                                     onChange={handleChange}
                                     className="input-box"
+                                    required
                                 />
                                 <input
                                     type="password"
@@ -45,8 +61,9 @@ const Login = ({ props }) => {
                                     placeholder="Password"
                                     onChange={handleChange}
                                     className="input-box"
+                                    required
                                 />
-                                <button type="button" className="submit-btn">Login</button>
+                                <button className="submit-btn">Login</button>
                             </form>
                         </div>
                     </div>

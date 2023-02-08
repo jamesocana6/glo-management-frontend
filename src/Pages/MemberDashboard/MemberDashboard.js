@@ -5,9 +5,10 @@ import Announcements from "../../Components/Announcements/Annoucements";
 import MemberInfo from "./MemberInfo/MemberInfo"
 import { Link } from 'react-router-dom'
 import NavBar from "../../Components/NavBar/NavBar";
+import Resources from "../../Components/Resources/Resources";
 
 
-const MemberDashboard = ({ props }) => {
+const MemberDashboard = ({ resources, title }) => {
     return (
         <>
             <div>
@@ -31,7 +32,7 @@ const MemberDashboard = ({ props }) => {
                 <div className="row m-3" style={{ height: '17rem' }}>
                     <div className="col m-3" style={{ backgroundColor: 'lightgrey' }}>
                         <p>
-                            <h1>National Resources</h1>
+                            <Resources title={title} resources={resources}/>
                             <Link to="../findcoach">Find a Coach</Link><br></br>
                             <Link to="../jobhub">Job Hub - Opps & Resources</Link><br></br>
                             Support other Sister's Businesses<br></br>

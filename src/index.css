@@ -1,7 +1,7 @@
 @import './Pages/Landing/Login/Login.css';
 @import './Components/Banner/Banner.css';
-@import './Pages/FindCoach/CoachCard/CoachCard.css';
-@import './Pages/FindCoach/CoachModal/CoachModal.css';
+@import './Pages/MemberDashboard/MemberDashboard.css';
+@import './Pages/FindCoach/FindCoach.css';
 
 body {
   margin: 0;
@@ -10,6 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #E4DFDA;
 }
 
 code {

@@ -17,25 +17,27 @@ const MemberInfo = ({ props }) => {
 
     return (
         <div>
-            <h1>MemberInfo</h1>
+            <h3 className="dashboard-component-title">Member Info</h3>
             {memberInfo.map((member) => {
                 return (
                     <div>
-                        <p>
-                            Crossing School: {member.crossingSchool}
-                        </p>
-                        <p>
-                            Crossing Class: {member.crossingClass}
-                        </p>
-                        <p>
-                            Current School: {member.currentSchool}
-                        </p>
-                        <p>
-                            Current Position: {member.currentPosition}
-                        </p>
-                        <p>
-                            Previous Position: {member.previousPosition}
-                        </p>
+                        <ul className="member-info">
+                            <li>
+                                Crossing School: {member.crossingSchool}
+                            </li>
+                            <li>
+                                Crossing Class: {member.crossingClass}
+                            </li>
+                            <li>
+                                Current School: {member.currentSchool}
+                            </li>
+                            <li>
+                                Current Position: {member.currentPosition}
+                            </li>
+                            <li>
+                                Previous Position: {member.previousPosition}
+                            </li>
+                        </ul>
                     </div>
                 )
             })}

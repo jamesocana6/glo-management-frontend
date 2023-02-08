@@ -3,118 +3,7 @@ import Banner from "../../Components/Banner/Banner";
 import NavBar from "../../Components/NavBar/NavBar";
 import JobArea from "./JobArea/JobArea";
 
-const JobHub = ({ props }) => {
-
-    // const jobOps = [
-    //     {
-    //         date: "1/10/2023",
-    //         jobTitle: "Software Engineer",
-    //         companyName: "Tesla",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Message the job poster with resume and I will give it to the recruiter",
-    //         experienceRequired: "Entry-Level",
-    //         industry: "Automotive",
-    //         jobDescription: "",
-    //         poster: "Elon Musk",
-    //     },
-    //     {
-    //         date: "1/12/2023",
-    //         jobTitle: "Software Engineer II",
-    //         companyName: "Apple",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Use my name in the referral",
-    //         experienceRequired: "Experienced",
-    //         industry: "Technology",
-    //         jobDescription: "",
-    //         poster: "Steve Jobs",
-    //     },
-    //     {
-    //         date: "1/15/2023",
-    //         jobTitle: "Web Developer",
-    //         companyName: "JP Morgan & Chase",
-    //         jobLink: "#",
-    //         location: "New York, NY",
-    //         howToApply: "Use my name in the referral",
-    //         experienceRequired: "Entry-Level",
-    //         industry: "",
-    //         jobDescription: "",
-    //         poster: "Steve Jobs",
-    //     },
-    //     {
-    //         date: "1/10/2023",
-    //         jobTitle: "Software Engineer",
-    //         companyName: "Tesla",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Message the job poster with resume and I will give it to the recruiter",
-    //         experienceRequired: "Entry-Level",
-    //         industry: "Automotive",
-    //         jobDescription: "",
-    //         poster: "Elon Musk",
-    //     },
-    //     {
-    //         date: "1/12/2023",
-    //         jobTitle: "Software Engineer II",
-    //         companyName: "Apple",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Use my name in the referral",
-    //         experienceRequired: "Experienced",
-    //         industry: "Technology",
-    //         jobDescription: "",
-    //         poster: "Steve Jobs",
-    //     },
-    //     {
-    //         date: "1/10/2023",
-    //         jobTitle: "Software Engineer",
-    //         companyName: "Tesla",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Message the job poster with resume and I will give it to the recruiter",
-    //         experienceRequired: "Entry-Level",
-    //         industry: "Automotive",
-    //         jobDescription: "",
-    //         poster: "Elon Musk",
-    //     },
-    //     {
-    //         date: "1/12/2023",
-    //         jobTitle: "Software Engineer II",
-    //         companyName: "Apple",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Use my name in the referral",
-    //         experienceRequired: "Experienced",
-    //         industry: "Technology",
-    //         jobDescription: "",
-    //         poster: "Steve Jobs",
-    //     },
-    //     {
-    //         date: "1/10/2023",
-    //         jobTitle: "Software Engineer",
-    //         companyName: "Tesla",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Message the job poster with resume and I will give it to the recruiter",
-    //         experienceRequired: "Entry-Level",
-    //         industry: "Automotive",
-    //         jobDescription: "",
-    //         poster: "Elon Musk",
-    //     },
-    //     {
-    //         date: "1/12/2023",
-    //         jobTitle: "Software Engineer II",
-    //         companyName: "Apple",
-    //         jobLink: "#",
-    //         location: "Remote",
-    //         howToApply: "Use my name in the referral",
-    //         experienceRequired: "Experienced",
-    //         industry: "Technology",
-    //         jobDescription: "",
-    //         poster: "Steve Jobs",
-    //     },
-    // ]
+const JobHub = ({ resources, title }) => {
 
     const [jobsList, setJobsList] = useState(null)
 
@@ -134,6 +23,8 @@ const JobHub = ({ props }) => {
                 />
             </div>
             <JobArea
+                title={title}
+                resources={resources}
                 jobsList={jobsList}
                 getJobsList={getJobsList}
             />

@@ -4,9 +4,10 @@ import Announcements from "../../Components/Announcements/Annoucements";
 import MemberInfo from "./MemberInfo/MemberInfo"
 import { Link } from 'react-router-dom'
 import NavBar from "../../Components/NavBar/NavBar";
+import Resources from "../../Components/Resources/Resources";
 
 
-const MemberDashboard = ({ props }) => {
+const MemberDashboard = ({ resources, title }) => {
     return (
         <>
             <NavBar />
@@ -37,6 +38,7 @@ const MemberDashboard = ({ props }) => {
                                 Support other Sister's Businesses
                             </li>
                         </ul>
+
                     </div>
 
                     <div className="col m-3 member-dashboard-col">

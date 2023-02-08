@@ -4,7 +4,6 @@ import { Building, GeoAltFill, Link } from "react-bootstrap-icons";
 const JobModal = ({post, postIdx}) => {
 
     return (
-        //CHANGE id={"jobModal"+post.date} to post.id
         <div className="modal fade" id={"jobModal"+post.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">

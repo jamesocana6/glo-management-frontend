@@ -15,6 +15,18 @@ import AddJob from './Pages/AddJob/AddJob';
 function App() {
   const navigate = useNavigate()
 
+  //Resource dummy data
+  let resources = {
+    national: {
+      links: ["https://www.google.com/", "https://www.bing.com/", "https://www.yahoo.com"],
+      titles: ["Fraternity Guidelines", "Merch Shop", "National Website"],
+    },
+    chapter: {
+      links: ["https://www.themuse.com/advice/the-ultimate-interview-guide-30-prep-tips-for-job-interview-success","https://www.indeed.com/", "https://www.forbes.com/sites/nicolelapin/2021/01/19/how-to-land-a-job-in-2021/?sh=58fed91439a2"],
+      titles: ["Interview Prep","Indeed", "How to Land a Job"],
+    },
+  }
+
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -136,7 +148,7 @@ function App() {
 
           <Route path="/findcoach/add" element={<NewCoach />} />
 
-          <Route path="/jobhub" element={<JobHub />} />
+          <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"}/>} />
           <Route path="/jobhub/add" element={<AddJob />} />
 
           <Route path="/profile" element={<Profile />} />

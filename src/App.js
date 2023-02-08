@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, Routes, Navigate } from 'react-router';
+import { Route, Routes, useNavigate, Navigate } from 'react-router';
 
 import './App.css';
 
@@ -11,14 +11,40 @@ import FindCoach from './Pages/FindCoach/FindCoach';
 import JobHub from './Pages/JobHub/JobHub';
 import AddJob from './Pages/AddJob/AddJob';
 
-function App() {
-  // state for sisters from DB
-  const [sisters, setSisters] = useState(null)
-  console.log("Sisters", sisters)
 
-  // state for filtered sisters
+function App() {
+  const navigate = useNavigate()
+
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  })
+
+  const [authenticated, setAuthenticated] = useState(localStorage.getItem("authenticated") || false);
+
+  // handle login form changes
+  const handleChange = (event) => {
+    setLogin({ ...login, [event.target.name]: event.target.value })
+  }
+
+  // handle login form
+  const handleLogin = (event) => {
+    event.preventDefault()
+
+    // if login successful, redirect to dashboard
+    if (login.email === "echo@gmail.com" && login.password === "123") {
+      setAuthenticated(true)
+      localStorage.setItem("authenticated", true)
+      navigate("/dashboard")
+    } else {
+      // else invalid username/password
+    }
+  }
+
+
+  // SISTERS DATA / FUNCTIONS
+  const [sisters, setSisters] = useState(null)
   const [filteredSisters, setFilteredSisters] = useState(sisters)
-  console.log("Filtered Sisters", filteredSisters)
 
   const onSisterFilterSubmit = (filter) => {
     filter.position.toLowerCase()
@@ -82,31 +108,41 @@ function App() {
     getSisters()
   }, [])
 
+
   return (
     <div className="App">
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
-      <Routes>
-        <Route path="/" element={<Navigate to='/login' />} />
-        <Route path="/login" element={<Landing />} />
+      {!authenticated ?
 
-        <Route path="/dashboard" element={<MemberDashboard />} />
+        <Routes>
+          <Route path="/" element={<Navigate to='/login' />} />
+          <Route path="/login" element={<Landing
+            handleChange={handleChange}
+            handleLogin={handleLogin}
+          />} />
+        </Routes>
+        :
+        <Routes>
+          <Route path="/dashboard" element={<MemberDashboard />} />
 
-        <Route
-          path="/findcoach"
-          element={<FindCoach
-            filteredSisters={filteredSisters}
-            getSisters={getSisters}
-            onSisterFilterSubmit={onSisterFilterSubmit}
-          />}
-        />
-        <Route path="/findcoach/add" element={<NewCoach />} />
+          <Route
+            path="/findcoach"
+            element={<FindCoach
+              filteredSisters={filteredSisters}
+              getSisters={getSisters}
+              onSisterFilterSubmit={onSisterFilterSubmit}
+            />}
+          />
 
-        <Route path="/jobhub" element={<JobHub />} />
-        <Route path="/jobhub/add" element={<AddJob />} />
+          <Route path="/findcoach/add" element={<NewCoach />} />
 
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-    </div>
+          <Route path="/jobhub" element={<JobHub />} />
+          <Route path="/jobhub/add" element={<AddJob />} />
+
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      }
+    </div >
   );
 }
 

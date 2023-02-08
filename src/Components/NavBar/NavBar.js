@@ -49,9 +49,9 @@ const NavBar = ({ props }) => {
         <div>
             <nav className="navbar navbar-expand-lg" style={{ padding: '2px' }}>
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="./dashboard">
+                    <Link className="navbar-brand" to={"/dashboard"}>
                         <img src={kplLogo} style={{ width: '110px' }} />
-                    </a>
+                    </Link>
                     <div>
                         <ul className="navbar-nav justify-content-end">
                             <li className="nav-item dropdown">

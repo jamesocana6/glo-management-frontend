@@ -1,33 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-const Login = ({ props }) => {
-    const navigate = useNavigate()
-
-    const [login, setLogin] = useState({
-        email: "",
-        password: "",
-    })
-
-    const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
-
-
-    const handleChange = (event) => {
-        setLogin({ ...login, [event.target.name]: event.target.value })
-    }
-
-    const handleLogin = (event) => {
-        event.preventDefault()
-        // if login successful, redirect to dashboard
-        if (login.email === "echo@gmail.com" && login.password === "123") {
-            setAuthenticated(true)
-            localStorage.setItem("authenticated", true)
-            navigate("/dashboard")
-        } else {
-            // else invalid username/password
-        }
-    }
-
+const Login = ({ handleChange, handleLogin }) => {
     return (
         <section className="home-header">
             <div className="container">

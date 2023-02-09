@@ -135,7 +135,7 @@ function App() {
         {/* </Routes> */}
         {/* : */}
         {/* <Routes> */}
-          <Route path="/dashboard" element={<MemberDashboard />} />
+          <Route path="/dashboard" element={<MemberDashboard resources={resources.national}/>} />
 
           <Route
             path="/findcoach"

@@ -28,6 +28,7 @@ const MemberDashboard = ({ resources, title }) => {
                     <div className="col-4 m-3 member-dashboard-col">
                         <h3 className="dashboard-component-title">National Resources</h3>
                         <ul className="national-resources">
+                            <Resources resources={resources}/>
                             <li>
                                 <Link to="../findcoach">Find a Coach</Link>
                             </li>

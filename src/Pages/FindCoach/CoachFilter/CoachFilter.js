@@ -4,7 +4,7 @@ import { Building, PersonCircle, PinMapFill } from 'react-bootstrap-icons';
 
 const Filters = ({ handleFilterChange, handleFilterSubmit }) => {
     return (
-        <div className="row">
+        <div className="row m-3">
             <form className="col s12" onSubmit={handleFilterSubmit}>
                 <div className="row">
                     <div className="input-field col s3">

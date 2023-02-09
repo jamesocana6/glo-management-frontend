@@ -3,7 +3,7 @@ import React from "react";
 const Announcements = ({props}) => {
     return (
         <div>
-            <h1>Announcements Component</h1>
+            <h3 className="dashboard-component-title">Announcements Component</h3>
         </div>
     )
 } 

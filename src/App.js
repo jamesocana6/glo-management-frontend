@@ -124,7 +124,7 @@ function App() {
   return (
     <div className="App">
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
-      {!authenticated ?
+      {/* {!authenticated ? */}
 
         <Routes>
           <Route path="/" element={<Navigate to='/login' />} />
@@ -132,10 +132,10 @@ function App() {
             handleChange={handleChange}
             handleLogin={handleLogin}
           />} />
-        </Routes>
-        :
-        <Routes>
-          <Route path="/dashboard" element={<MemberDashboard resources={resources.national} title={"National"}/>} />
+        {/* </Routes> */}
+        {/* : */}
+        {/* <Routes> */}
+          <Route path="/dashboard" element={<MemberDashboard />} />
 
           <Route
             path="/findcoach"
@@ -153,7 +153,7 @@ function App() {
 
           <Route path="/profile" element={<Profile />} />
         </Routes>
-      }
+      {/* } */}
     </div >
   );
 }

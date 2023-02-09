@@ -46,7 +46,7 @@ const CoachCard = ({ filteredSisters }) => {
 
     return (
         <div className="container-fluid">
-            <div className="row">
+            <div className="row m-3">
                 {filteredSisters ? loaded() : loading()}
             </div>
         </div>

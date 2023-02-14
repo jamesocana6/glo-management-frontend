@@ -6,7 +6,7 @@ import { Person } from "react-bootstrap-icons";
 import "./style.css";
 import kplLogo from "../../assets/kplLogo.png"
 
-const NavBar = ({ props }) => {
+const NavBar = ({ props, token }) => {
     const [chapters, setChapters] = useState(null)
 
     const getChapters = async () => {
@@ -16,6 +16,17 @@ const NavBar = ({ props }) => {
         setChapters(data)
     }
 
+    const handleLogOut = async () => {
+        localStorage.clear()
+
+        await fetch("http://127.0.0.1:8000/api/accounts/logout/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "Application/json",
+                "Authorization": "Token " + token.token
+            },
+        })
+    }
 
     useEffect(() => {
         getChapters()
@@ -100,7 +111,7 @@ const NavBar = ({ props }) => {
                                 </a>
                                 <ul className="dropdown-menu">
                                     <Link className="nav-link" to={"/profile"}>Edit Profile</Link>
-                                    <Link className="dropdown-item" to={"/login"} onClick={localStorage.clear()}>Logout</Link>
+                                    <Link className="dropdown-item" to={"/login"} onClick={handleLogOut}>Logout</Link>
                                 </ul>
                             </li>
 

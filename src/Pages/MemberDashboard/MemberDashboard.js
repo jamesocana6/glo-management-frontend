@@ -7,11 +7,11 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Resources from "../../Components/Resources/Resources";
 
 
-const MemberDashboard = ({ resources, title }) => {
+
+const MemberDashboard = ({ resources, title, token }) => {
     return (
         <>
-            <NavBar />
-
+            <NavBar token={token}/>
             <div className="container-fluid">
                 <div className="row m-3 member-dashboard-row">
                     <div className="col-4 m-3 member-dashboard-col">

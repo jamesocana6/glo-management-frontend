@@ -22,8 +22,8 @@ function App() {
       titles: ["Fraternity Guidelines", "Merch Shop", "National Website"],
     },
     chapter: {
-      links: ["https://www.themuse.com/advice/the-ultimate-interview-guide-30-prep-tips-for-job-interview-success","https://www.indeed.com/", "https://www.forbes.com/sites/nicolelapin/2021/01/19/how-to-land-a-job-in-2021/?sh=58fed91439a2"],
-      titles: ["Interview Prep","Indeed", "How to Land a Job"],
+      links: ["https://www.themuse.com/advice/the-ultimate-interview-guide-30-prep-tips-for-job-interview-success", "https://www.indeed.com/", "https://www.forbes.com/sites/nicolelapin/2021/01/19/how-to-land-a-job-in-2021/?sh=58fed91439a2"],
+      titles: ["Interview Prep", "Indeed", "How to Land a Job"],
     },
   }
 
@@ -33,6 +33,8 @@ function App() {
   })
 
   const [authenticated, setAuthenticated] = useState(localStorage.getItem("authenticated") || false);
+  const [token, setToken] = useState(null)
+
 
   // handle login form changes
   const handleChange = (event) => {
@@ -40,16 +42,28 @@ function App() {
   }
 
   // handle login form
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
 
-    // if login successful, redirect to dashboard
-    if (login.email === "echo@gmail.com" && login.password === "123") {
+    // check if username and password exist in backend
+    const response = await fetch("http://127.0.0.1:8000/api/accounts/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+      body: JSON.stringify({ email: login.email, password: login.password })
+    })
+
+    const data = await response.json()
+
+
+    if (data) {
       setAuthenticated(true)
+      setToken(data)
       localStorage.setItem("authenticated", true)
       navigate("/dashboard")
     } else {
-      // else invalid username/password
+      alert('invalid')
     }
   }
 
@@ -125,34 +139,34 @@ function App() {
     <div className="App">
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
       {/* {!authenticated ? */}
-
-        <Routes>
-          <Route path="/" element={<Navigate to='/login' />} />
-          <Route path="/login" element={<Landing
-            handleChange={handleChange}
-            handleLogin={handleLogin}
-          />} />
+      <Routes>
+        <Route path="/" element={<Navigate to='/login' />} />
+        <Route path="/login" element={<Landing
+          handleChange={handleChange}
+          handleLogin={handleLogin}
+        />} />
         {/* </Routes> */}
         {/* : */}
         {/* <Routes> */}
-          <Route path="/dashboard" element={<MemberDashboard resources={resources.national}/>} />
+        <Route path="/dashboard" element={<MemberDashboard resources={resources.national} token={token}/>} />
 
-          <Route
-            path="/findcoach"
-            element={<FindCoach
-              filteredSisters={filteredSisters}
-              getSisters={getSisters}
-              onSisterFilterSubmit={onSisterFilterSubmit}
-            />}
-          />
+        <Route
+          path="/findcoach"
+          element={<FindCoach
+            filteredSisters={filteredSisters}
+            getSisters={getSisters}
+            onSisterFilterSubmit={onSisterFilterSubmit}
+          />}
+        />
 
-          <Route path="/findcoach/add" element={<NewCoach />} />
+        <Route path="/findcoach/add" element={<NewCoach />} />
 
-          <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"}/>} />
-          <Route path="/jobhub/add" element={<AddJob />} />
+        <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"} />} />
+        <Route path="/jobhub/add" element={<AddJob />} />
 
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+
       {/* } */}
     </div >
   );

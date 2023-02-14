@@ -23,7 +23,7 @@ const FindCoach = ({ filteredSisters, getSisters, onSisterFilterSubmit }) => {
         onSisterFilterSubmit(filter)
     }
 
-    console.log('Filter Input', filter)
+    // console.log('Filter Input', filter)
     return (
         <div>
             <NavBar />

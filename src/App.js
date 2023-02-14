@@ -139,7 +139,6 @@ function App() {
     <div className="App">
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
       {/* {!authenticated ? */}
-
       <Routes>
         <Route path="/" element={<Navigate to='/login' />} />
         <Route path="/login" element={<Landing
@@ -167,6 +166,7 @@ function App() {
 
         <Route path="/profile" element={<Profile />} />
       </Routes>
+
       {/* } */}
     </div >
   );

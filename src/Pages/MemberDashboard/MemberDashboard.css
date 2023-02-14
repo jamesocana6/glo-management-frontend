@@ -1,0 +1,18 @@
+@import './MemberInfo/MemberInfo.css';
+
+.member-dashboard-row {
+    height: 20rem;
+}
+
+.member-dashboard-col {
+    background-color: rgb(255, 255, 255);
+}
+
+.national-resources {
+    list-style-type: none;
+}
+
+.dashboard-component-title {
+    font-weight: bold;
+    text-align: center;
+}

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import JobModal from "../JobModal/JobModal";
 
 const JobOps = ({ jobsList, getJobsList }) => {
-    console.log('JobOps.js: jobsList', jobsList)
+    let date = new Date()
+    let today = date.getTime()
 
     useEffect(() => {
         getJobsList()
@@ -11,15 +12,17 @@ const JobOps = ({ jobsList, getJobsList }) => {
 
     const loaded = () => {
         let allJobs = jobsList.map((job, index) => {
-            return (
-                //CHANGE id={"jobModal"+post.date} to post.id
-                <div style={{ backgroundColor: 'orange' }} key={job.date} data-bs-toggle="modal" data-bs-target={"#jobModal"+job.date}>
-                    <p>
-                        {job.jobTitle} - {job.companyName} - {job.experienceRequired} - {job.location}
-                        <JobModal post={job} postIdx={index} />
-                    </p>
-                </div>
-            )
+            let deleteDate = Date.parse(job.pub_date)+(30*86400000)
+            if (today < deleteDate) {
+                return (
+                    <div style={{ backgroundColor: 'orange' }} key={job.id} data-bs-toggle="modal" data-bs-target={"#jobModal"+job.id}>
+                        <div style={{ marginBottom: 10 }}>
+                            {job.job_title_txt} - {job.company_name_txt} - {job.level_of_opening_txt} - {job.city_txt}, {job.state_txt}
+                            <JobModal post={job} postIdx={index} />
+                        </div>
+                    </div>
+                )
+            }
         })
 
         return (

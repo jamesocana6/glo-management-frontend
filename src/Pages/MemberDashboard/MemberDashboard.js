@@ -7,15 +7,11 @@ import { Link } from 'react-router-dom'
 import NavBar from "../../Components/NavBar/NavBar";
 
 
-const MemberDashboard = ({ props }) => {
+
+const MemberDashboard = ({ resources, title, token }) => {
     return (
         <>
-            <div>
-                <NavBar />
-                <h1>MemberDashboard Page</h1>
-                Hi First Name!
-            </div>
-
+            <NavBar token={token}/>
             <div className="container-fluid">
                 <div className="row m-3" style={{ height: '17rem' }}>
                     <div className="col m-3" style={{ backgroundColor: 'lightgrey' }}>

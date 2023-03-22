@@ -14,7 +14,7 @@ const EditProfile = () => {
         crossing_date: "1995-03-09",
         initiation_date: "1995-01-01",
         line_number: "1",
-        big_sister_nb: "1",
+        big_member_nb: "1",
         tree: "Wizard",
         status_txt: "AL",
         current_city: "San Francisco",

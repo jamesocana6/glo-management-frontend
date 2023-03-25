@@ -1,7 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
-const Login = ({ handleChange, handleLogin }) => {
+import { login } from "../../../services/user";
+
+const Login = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const [loginData, setLoginData] = useState({
+        email: "",
+        password: "",
+    })
+
+    // handle login form changes
+    const handleChange = (event) => {
+        setLoginData({ ...loginData, [event.target.name]: event.target.value })
+    }
+
+    // handle login form
+    const handleLogin = async (event) => {
+        event.preventDefault()
+
+        dispatch(login(loginData))
+        navigate("/dashboard", { replace: true })
+    }
+
     return (
         <section className="home-header">
             <div className="container">

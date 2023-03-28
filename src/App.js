@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, Navigate } from 'react-router';
-
-import './App.css';
+import { useSelector } from 'react-redux';
 
 import Landing from './Pages/Landing/Landing';
 import MemberDashboard from './Pages/MemberDashboard/MemberDashboard';
@@ -11,9 +10,13 @@ import FindCoach from './Pages/FindCoach/FindCoach';
 import JobHub from './Pages/JobHub/JobHub';
 import AddJob from './Pages/AddJob/AddJob';
 
+import './App.css';
 
 function App() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+  const { user } = useSelector((state) => state.auth);
+
+  console.log("user", user)
 
   //Resource dummy data
   let resources = {
@@ -27,45 +30,43 @@ function App() {
     },
   }
 
-  const [login, setLogin] = useState({
-    email: "",
-    password: "",
-  })
+  // const [login, setLogin] = useState({
+  //   email: "",
+  //   password: "",
+  // })
 
-  const [authenticated, setAuthenticated] = useState(localStorage.getItem("authenticated") || false);
   const [token, setToken] = useState(null)
 
 
-  // handle login form changes
-  const handleChange = (event) => {
-    setLogin({ ...login, [event.target.name]: event.target.value })
-  }
+  // // handle login form changes
+  // const handleChange = (event) => {
+  //   setLogin({ ...login, [event.target.name]: event.target.value })
+  // }
 
-  // handle login form
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  // // handle login form
+  // const handleLogin = async (event) => {
+  //   event.preventDefault()
 
-    // check if username and password exist in backend
-    const response = await fetch("http://127.0.0.1:8000/api/accounts/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify({ email: login.email, password: login.password })
-    })
+  //   // check if username and password exist in backend
+  //   const response = await fetch("http://127.0.0.1:8000/api/accounts/login/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "Application/json",
+  //     },
+  //     body: JSON.stringify({ email: login.email, password: login.password })
+  //   })
 
-    const data = await response.json()
+  //   const data = await response.json()
 
 
-    if (data) {
-      setAuthenticated(true)
-      setToken(data)
-      localStorage.setItem("authenticated", true)
-      navigate("/dashboard")
-    } else {
-      alert('invalid')
-    }
-  }
+  //   if (data.token) {
+  //     setToken(data.token)
+  //     localStorage.setItem("token", data.token)
+  //     navigate("/dashboard")
+  //   } else {
+  //     alert('invalid')
+  //   }
+  // }
 
 
   // SISTERS DATA / FUNCTIONS
@@ -138,36 +139,33 @@ function App() {
   return (
     <div className="App">
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
-      {/* {!authenticated ? */}
-      <Routes>
-        <Route path="/" element={<Navigate to='/login' />} />
-        <Route path="/login" element={<Landing
-          handleChange={handleChange}
-          handleLogin={handleLogin}
-        />} />
-        {/* </Routes> */}
-        {/* : */}
-        {/* <Routes> */}
-        <Route path="/dashboard" element={<MemberDashboard resources={resources.national} token={token}/>} />
+      {!user ?
+        <Routes>
+          <Route path="/" element={<Navigate to='/login' />} />
+          <Route path="/login" element={<Landing/>} />
+        </Routes>
+        :
+        <Routes>
+          <Route path="/dashboard" element={<MemberDashboard resources={resources.national} token={token} />} />
 
-        <Route
-          path="/findcoach"
-          element={<FindCoach
-            filteredSisters={filteredSisters}
-            getSisters={getSisters}
-            onSisterFilterSubmit={onSisterFilterSubmit}
-          />}
-        />
+          <Route
+            path="/findcoach"
+            element={<FindCoach
+              filteredSisters={filteredSisters}
+              getSisters={getSisters}
+              onSisterFilterSubmit={onSisterFilterSubmit}
+            />}
+          />
 
-        <Route path="/findcoach/add" element={<NewCoach />} />
+          <Route path="/findcoach/add" element={<NewCoach />} />
 
-        <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"} />} />
-        <Route path="/jobhub/add" element={<AddJob />} />
+          <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"} />} />
+          <Route path="/jobhub/add" element={<AddJob />} />
 
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
 
-      {/* } */}
+      }
     </div >
   );
 }

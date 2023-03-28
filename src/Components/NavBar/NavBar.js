@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Person } from "react-bootstrap-icons";
+import { logout } from "../../store/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./style.css";
 import kplLogo from "../../assets/kplLogo.png"
 
 const NavBar = ({ props, token }) => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const [chapters, setChapters] = useState(null)
 
     const getChapters = async () => {
@@ -17,15 +22,17 @@ const NavBar = ({ props, token }) => {
     }
 
     const handleLogOut = async () => {
-        localStorage.clear()
+        dispatch(logout())
+        navigate("/", { replace: true })
+        // localStorage.clear()
 
-        await fetch("http://127.0.0.1:8000/api/accounts/logout/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "Application/json",
-                "Authorization": "Token " + token.token
-            },
-        })
+        // await fetch("http://127.0.0.1:8000/api/accounts/logout/", {
+        //     method: "GET",
+        //     headers: {
+        //         "Content-Type": "Application/json",
+        //         "Authorization": "Token " + token.token
+        //     },
+        // })
     }
 
     useEffect(() => {

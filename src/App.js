@@ -13,7 +13,7 @@ import AddJob from './Pages/AddJob/AddJob';
 import './App.css';
 
 function App() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const { user } = useSelector((state) => state.auth);
 
   console.log("user", user)
@@ -30,43 +30,43 @@ function App() {
     },
   }
 
-  const [login, setLogin] = useState({
-    email: "",
-    password: "",
-  })
+  // const [login, setLogin] = useState({
+  //   email: "",
+  //   password: "",
+  // })
 
   const [token, setToken] = useState(null)
 
 
-  // handle login form changes
-  const handleChange = (event) => {
-    setLogin({ ...login, [event.target.name]: event.target.value })
-  }
+  // // handle login form changes
+  // const handleChange = (event) => {
+  //   setLogin({ ...login, [event.target.name]: event.target.value })
+  // }
 
-  // handle login form
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  // // handle login form
+  // const handleLogin = async (event) => {
+  //   event.preventDefault()
 
-    // check if username and password exist in backend
-    const response = await fetch("http://127.0.0.1:8000/api/accounts/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify({ email: login.email, password: login.password })
-    })
+  //   // check if username and password exist in backend
+  //   const response = await fetch("http://127.0.0.1:8000/api/accounts/login/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "Application/json",
+  //     },
+  //     body: JSON.stringify({ email: login.email, password: login.password })
+  //   })
 
-    const data = await response.json()
+  //   const data = await response.json()
 
 
-    if (data.token) {
-      setToken(data.token)
-      localStorage.setItem("token", data.token)
-      navigate("/dashboard")
-    } else {
-      alert('invalid')
-    }
-  }
+  //   if (data.token) {
+  //     setToken(data.token)
+  //     localStorage.setItem("token", data.token)
+  //     navigate("/dashboard")
+  //   } else {
+  //     alert('invalid')
+  //   }
+  // }
 
 
   // SISTERS DATA / FUNCTIONS

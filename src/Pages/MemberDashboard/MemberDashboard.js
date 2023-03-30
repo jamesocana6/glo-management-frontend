@@ -36,7 +36,7 @@ const MemberDashboard = ({ resources, title, token }) => {
                                 <Link to="../jobhub">Job Hub - Opps & Resources</Link>
                             </li>
                             <li>
-                                Support other Sister's Businesses
+                                Support other Member's Businesses
                             </li>
                         </ul>
 

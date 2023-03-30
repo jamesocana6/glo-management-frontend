@@ -1,18 +1,18 @@
 import React from "react";
 
-const CoachModal = ({ sister }) => {
+const CoachModal = ({ member }) => {
     // top section of modal
     const loaded = () => {
         return (
-            <div className="modal-title fs-5 m-2" id={"coachModal" + sister.id}>
+            <div className="modal-title fs-5 m-2" id={"coachModal" + member.id}>
                 <p className="card-text coach-modal-heading-text" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-                    {sister.first_name_txt} {sister.last_name_txt}
+                    {member.first_name_txt} {member.last_name_txt}
                 </p>
                 <p className="card-text coach-modal-heading-text">
-                    {sister.current_company_txt}
+                    {member.current_company_txt}
                 </p>
                 <p className="card-text coach-modal-heading-text">
-                    {sister.current_city_txt}
+                    {member.current_city_txt}
                 </p>
             </div>
         )
@@ -21,7 +21,7 @@ const CoachModal = ({ sister }) => {
     const loading = () => {
         return (
             <>
-                There is no sister info
+                There is no member info
             </>
         )
     }
@@ -29,7 +29,7 @@ const CoachModal = ({ sister }) => {
     return (
         <div
             className="modal fade"
-            id={"coachModal" + sister.nickname_txt}
+            id={"coachModal" + member.nickname_txt}
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
@@ -38,7 +38,7 @@ const CoachModal = ({ sister }) => {
                 <div className="modal-content">
                     <div className="modal-header p-3">
                         <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" className="modal-image" />
-                        {sister ? loaded() : loading()}
+                        {member ? loaded() : loading()}
 
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>

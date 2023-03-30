@@ -69,70 +69,71 @@ function App() {
   // }
 
 
-  // SISTERS DATA / FUNCTIONS
-  const [sisters, setSisters] = useState(null)
-  const [filteredSisters, setFilteredSisters] = useState(sisters)
+  // memberS DATA / FUNCTIONS
+  const [members, setMembers] = useState(null)
+  const [filteredMembers, setFilteredMembers] = useState(members)
 
-  const onSisterFilterSubmit = (filter) => {
+  const onMemberFilterSubmit = (filter) => {
     filter.position.toLowerCase()
     filter.company.toLowerCase()
     filter.location.toLowerCase()
 
     if (filter.position === '' && filter.company === '' && filter.location === '') {
-      setFilteredSisters(sisters)
+      setFilteredMembers(members)
       return
     }
+ 
 
     if (filter.position) {
-      let positionFilter = sisters.filter(sister => sister.current_position_txt.toLowerCase().includes(filter.position))
+      let positionFilter = members.filter(member => member.current_position_txt.toLowerCase().includes(filter.position))
 
       if (filter.company) {
-        let companyFilter = positionFilter.filter(sister => sister.current_company_txt.toLowerCase().includes(filter.company))
+        let companyFilter = positionFilter.filter(member => member.current_company_txt.toLowerCase().includes(filter.company))
 
         if (filter.location) {
-          let locationFilter = companyFilter.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
+          let locationFilter = companyFilter.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
 
-          setFilteredSisters(locationFilter)
+          setFilteredMembers(locationFilter)
         }
 
-        setFilteredSisters(companyFilter)
+        setFilteredMembers(companyFilter)
       }
       else if (filter.location) {
-        let locationFilter = positionFilter.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
+        let locationFilter = positionFilter.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
 
-        setFilteredSisters(locationFilter)
+        setFilteredMembers(locationFilter)
       }
 
-      setFilteredSisters(positionFilter)
+      setFilteredMembers(positionFilter)
     }
     else if (filter.company) {
-      let companyFilter = sisters.filter(sister => sister.current_company_txt.toLowerCase().includes(filter.company))
+      let companyFilter = members.filter(member => member.current_company_txt.toLowerCase().includes(filter.company))
 
       if (filter.location) {
-        let locationFilter = companyFilter.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
+        let locationFilter = companyFilter.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
 
-        setFilteredSisters(locationFilter)
+        setFilteredMembers(locationFilter)
       }
 
-      setFilteredSisters(companyFilter)
+      setFilteredMembers(companyFilter)
     }
     else if (filter.location) {
-      let locationFilter = sisters.filter(sister => sister.current_city_txt.toLowerCase().includes(filter.location))
+      let locationFilter = members.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
 
-      setFilteredSisters(locationFilter)
+      setFilteredMembers(locationFilter)
     }
   }
 
-  const getSisters = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/sisters/")
+  const getMembers = async () => {
+    const response = await fetch("http://127.0.0.1:8000/api/members/")
     const data = await response.json()
 
-    setSisters(data)
-    setFilteredSisters(data)
+    setMembers(data)
+    setFilteredMembers(data)
   }
 
   useEffect(() => {
-    getSisters()
+    getMembers()
   }, [])
 
 
@@ -151,9 +152,9 @@ function App() {
           <Route
             path="/findcoach"
             element={<FindCoach
-              filteredSisters={filteredSisters}
-              getSisters={getSisters}
-              onSisterFilterSubmit={onSisterFilterSubmit}
+              filteredMembers={filteredMembers}
+              getMembers={getMembers}
+              onMemberFilterSubmit={onMemberFilterSubmit}
             />}
           />
 

@@ -5,7 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import CoachArea from "./CoachArea/CoachArea";
 import CoachFilter from "./CoachFilter/CoachFilter";
 
-const FindCoach = ({ filteredSisters, getSisters, onSisterFilterSubmit }) => {
+const FindCoach = ({ filteredMembers, getMembers, onMemberFilterSubmit }) => {
     const [filter, setFilter] = useState({
         position: '',
         company: '',
@@ -20,7 +20,7 @@ const FindCoach = ({ filteredSisters, getSisters, onSisterFilterSubmit }) => {
     const handleFilterSubmit = (event) => {
         // console.log("filter", filter)
         event.preventDefault()
-        onSisterFilterSubmit(filter)
+        onMemberFilterSubmit(filter)
     }
 
     // console.log('Filter Input', filter)
@@ -33,8 +33,8 @@ const FindCoach = ({ filteredSisters, getSisters, onSisterFilterSubmit }) => {
                 handleFilterSubmit={handleFilterSubmit}
             />
             <CoachArea
-                filteredSisters={filteredSisters}
-                getSisters={getSisters}
+                filteredMembers={filteredMembers}
+                getMembers={getMembers}
             />
         </div>
     )

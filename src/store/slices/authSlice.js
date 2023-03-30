@@ -3,11 +3,11 @@ import { signUp, login } from "../../services/user"
 import jwtDecode from "jwt-decode";
 
 const user = localStorage.getItem('token')
-  ? jwtDecode(localStorage.getItem("token"))
-  : null
+  // ? jwtDecode(localStorage.getItem("token"))
+  // : null
 
 const initialState = {
-  user: user ? user.user : null,
+  user: user ? user : null,
   isError: false,
   isSuccess: false,
   isLoading: false,

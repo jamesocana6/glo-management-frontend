@@ -68,82 +68,13 @@ function App() {
   //   }
   // }
 
-
-  // memberS DATA / FUNCTIONS
-  const [members, setMembers] = useState(null)
-  const [filteredMembers, setFilteredMembers] = useState(members)
-
-  const onMemberFilterSubmit = (filter) => {
-    filter.position.toLowerCase()
-    filter.company.toLowerCase()
-    filter.location.toLowerCase()
-
-    if (filter.position === '' && filter.company === '' && filter.location === '') {
-      setFilteredMembers(members)
-      return
-    }
- 
-
-    if (filter.position) {
-      let positionFilter = members.filter(member => member.current_position_txt.toLowerCase().includes(filter.position))
-
-      if (filter.company) {
-        let companyFilter = positionFilter.filter(member => member.current_company_txt.toLowerCase().includes(filter.company))
-
-        if (filter.location) {
-          let locationFilter = companyFilter.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
-
-          setFilteredMembers(locationFilter)
-        }
-
-        setFilteredMembers(companyFilter)
-      }
-      else if (filter.location) {
-        let locationFilter = positionFilter.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
-
-        setFilteredMembers(locationFilter)
-      }
-
-      setFilteredMembers(positionFilter)
-    }
-    else if (filter.company) {
-      let companyFilter = members.filter(member => member.current_company_txt.toLowerCase().includes(filter.company))
-
-      if (filter.location) {
-        let locationFilter = companyFilter.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
-
-        setFilteredMembers(locationFilter)
-      }
-
-      setFilteredMembers(companyFilter)
-    }
-    else if (filter.location) {
-      let locationFilter = members.filter(member => member.current_city_txt.toLowerCase().includes(filter.location))
-
-      setFilteredMembers(locationFilter)
-    }
-  }
-
-  const getMembers = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/members/")
-    const data = await response.json()
-
-    setMembers(data)
-    setFilteredMembers(data)
-  }
-
-  useEffect(() => {
-    getMembers()
-  }, [])
-
-
   return (
     <div className="App">
       {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
       {!user ?
         <Routes>
           <Route path="/" element={<Navigate to='/login' />} />
-          <Route path="/login" element={<Landing/>} />
+          <Route path="/login" element={<Landing />} />
         </Routes>
         :
         <Routes>
@@ -151,11 +82,7 @@ function App() {
 
           <Route
             path="/findcoach"
-            element={<FindCoach
-              filteredMembers={filteredMembers}
-              getMembers={getMembers}
-              onMemberFilterSubmit={onMemberFilterSubmit}
-            />}
+            element={<FindCoach />}
           />
 
           <Route path="/findcoach/add" element={<NewCoach />} />

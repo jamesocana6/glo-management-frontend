@@ -1,11 +1,11 @@
 import React from "react";
 import CoachCard from "../CoachCard/CoachCard";
 
-const CoachArea = ({ filteredMembers, getMembers }) => {
+const CoachArea = ({ filteredCoaches, getCoaches }) => {
     return (
         <CoachCard
-            filteredMembers={filteredMembers}
-            getMembers={getMembers}
+            filteredCoaches={filteredCoaches}
+            getCoaches={getCoaches}
         />
     )
 }

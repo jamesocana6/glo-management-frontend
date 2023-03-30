@@ -55,6 +55,7 @@ function App() {
       setFilteredMembers(members)
       return
     }
+ 
 
     if (filter.position) {
       let positionFilter = members.filter(member => member.current_position_txt.toLowerCase().includes(filter.position))

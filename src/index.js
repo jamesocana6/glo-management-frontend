@@ -1,16 +1,48 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+import './index.css';
+import App from './App';
+import { authReducer, fetchUserAsync } from './reduxStore/reducers/authSlice';
+
+const rootReducer = combineReducers({
+  auth: authReducer, // Use authSlice in the combineReducers function
+});
+
+// Retrieve the persisted state from local storage
+const persistedState = localStorage.getItem('reduxState')
+  ? JSON.parse(localStorage.getItem('reduxState'))
+  : {};
+
+// Create the store with persisted state and middleware
+const store = createStore(rootReducer, persistedState, applyMiddleware(thunk));
+
+// Save the state to local storage whenever it changes
+store.subscribe(() => {
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
+
+// Fetch the user when the app loads
+store.dispatch(fetchUserAsync());
+
+fetch('/api-auth/csrf/', {
+  method: 'GET',
+  credentials: 'include'
+}).then(response => {
+  const csrfToken = response.headers.get('X-CSRFToken');
+  // Store the CSRF token in a cookie
+  document.cookie = `csrftoken=${csrfToken}; Path=/`;
+});
+
+ReactDOM.render(
   <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </Router>
+  </Router>,
+  document.getElementById('root')
 );

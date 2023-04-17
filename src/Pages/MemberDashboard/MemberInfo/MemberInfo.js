@@ -19,8 +19,9 @@ const MemberInfo = ({ props }) => {
         <div>
             <h3 className="dashboard-component-title">Member Info</h3>
             {memberInfo.map((member) => {
+                const key = `${member.crossingSchool}-${member.crossingClass}`;
                 return (
-                    <div>
+                    <div key={key}>
                         <ul className="member-info">
                             <li>
                                 Crossing School: {member.crossingSchool}

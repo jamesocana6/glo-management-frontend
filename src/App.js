@@ -10,6 +10,7 @@ import NewCoach from './Pages/NewCoach/NewCoach';
 import FindCoach from './Pages/FindCoach/FindCoach';
 import JobHub from './Pages/JobHub/JobHub';
 import AddJob from './Pages/AddJob/AddJob';
+import Donations from './Pages/Donations/Donations';
 
 import './App.css';
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"} />} />
           <Route path="/jobhub/add" element={<AddJob />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/donations" element={<Donations />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       ) : (

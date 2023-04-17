@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, Navigate } from 'react-router';
-import { useSelector } from 'react-redux';
-
+import { useState, useEffect } from "react";
+import { Route, Routes, useNavigate, Navigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserAsync } from "./reduxStore/reducers/authSlice";
+import Login from './Pages/Landing/Login/Login';
 import Landing from './Pages/Landing/Landing';
 import MemberDashboard from './Pages/MemberDashboard/MemberDashboard';
 import Profile from './Pages/Profile/Profile';
@@ -13,10 +14,6 @@ import AddJob from './Pages/AddJob/AddJob';
 import './App.css';
 
 function App() {
-  // const navigate = useNavigate()
-  const { user } = useSelector((state) => state.auth);
-
-  console.log("user", user)
 
   //Resource dummy data
   let resources = {
@@ -30,71 +27,42 @@ function App() {
     },
   }
 
-  // const [login, setLogin] = useState({
-  //   email: "",
-  //   password: "",
-  // })
+  const navigate = useNavigate();
+  const { user, token, isLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  console.log(token, user)
 
-  const [token, setToken] = useState(null)
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      dispatch(fetchUserAsync(token));
+    }
+  }, [dispatch, navigate, token]);
 
-
-  // // handle login form changes
-  // const handleChange = (event) => {
-  //   setLogin({ ...login, [event.target.name]: event.target.value })
-  // }
-
-  // // handle login form
-  // const handleLogin = async (event) => {
-  //   event.preventDefault()
-
-  //   // check if username and password exist in backend
-  //   const response = await fetch("http://127.0.0.1:8000/api/accounts/login/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "Application/json",
-  //     },
-  //     body: JSON.stringify({ email: login.email, password: login.password })
-  //   })
-
-  //   const data = await response.json()
-
-
-  //   if (data.token) {
-  //     setToken(data.token)
-  //     localStorage.setItem("token", data.token)
-  //     navigate("/dashboard")
-  //   } else {
-  //     alert('invalid')
-  //   }
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>; // Add a loading state
+  }
 
   return (
     <div className="App">
-      {/* IF user is logged in, Navigate to appropriate dashboard else Navigate to login */}
-      {!user ?
-        <Routes>
-          <Route path="/" element={<Navigate to='/login' />} />
-          <Route path="/login" element={<Landing />} />
-        </Routes>
-        :
+      {token && user ? (
         <Routes>
           <Route path="/dashboard" element={<MemberDashboard resources={resources.national} token={token} />} />
-
-          <Route
-            path="/findcoach"
-            element={<FindCoach />}
-          />
-
+          <Route path="/findcoach" element={<FindCoach />} />
           <Route path="/findcoach/add" element={<NewCoach />} />
-
           <Route path="/jobhub" element={<JobHub resources={resources.chapter} title={"Chapter Job"} />} />
           <Route path="/jobhub/add" element={<AddJob />} />
-
           <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
-
-      }
-    </div >
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Landing />} />
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      )}
+    </div>
   );
 }
 

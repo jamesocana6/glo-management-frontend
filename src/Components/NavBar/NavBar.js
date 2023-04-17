@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Person } from "react-bootstrap-icons";
-import { logout } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { logoutAsync } from "../../reduxStore/reducers/authSlice";
 import "./style.css";
 import kplLogo from "../../assets/kplLogo.png"
 
-const NavBar = ({ props, token }) => {
+const NavBar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const token = useSelector(state => state.auth.token);
+
     const [chapters, setChapters] = useState(null)
+    const [logoutState, setLogoutState] = useState(false)
 
     const getChapters = async () => {
         const response = await fetch("http://localhost:8000/api/chapters/")
@@ -21,30 +22,17 @@ const NavBar = ({ props, token }) => {
         setChapters(data)
     }
 
-    const handleLogOut = async () => {
-        dispatch(logout())
-        navigate("/", { replace: true })
-        // localStorage.clear()
-
-        // await fetch("http://127.0.0.1:8000/api/accounts/logout/", {
-        //     method: "GET",
-        //     headers: {
-        //         "Content-Type": "Application/json",
-        //         "Authorization": "Token " + token.token
-        //     },
-        // })
-    }
-
     useEffect(() => {
-        getChapters()
-    }, [])
-
-    // console.log(chapters)
+        if (logoutState) {
+            dispatch(logoutAsync(token))
+            navigate("/login")
+        }
+    }, [logoutState, dispatch, navigate])
 
     const loaded = () => {
         let allChapters = chapters.map((chapter) => {
             return (
-                <li><a className="dropdown-item" href="#">{chapter.chapter_school_txt}</a></li>
+                <li key={chapter.id}><a className="dropdown-item" href="#">{chapter.chapter_school_txt}</a></li>
             )
         })
 
@@ -62,6 +50,15 @@ const NavBar = ({ props, token }) => {
             </ul>
         )
     }
+
+    const handleLogout = async (token) => {
+        try {
+            await dispatch(logoutAsync(token));
+            navigate("/login");
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    };
 
     return (
         <div>
@@ -111,16 +108,26 @@ const NavBar = ({ props, token }) => {
                                     <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
-
+                            {/* <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Giving Back
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <Link className="dropdown-item" to={"/payments"}>Donations</Link>
+                                </ul>
+                            </li> */}
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <Person size={25} />
                                 </a>
                                 <ul className="dropdown-menu">
                                     <Link className="nav-link" to={"/profile"}>Edit Profile</Link>
-                                    <Link className="dropdown-item" to={"/login"} onClick={handleLogOut}>Logout</Link>
+                                    <div onClick={() => dispatch(logoutAsync(token))}>
+                                        <Link className="dropdown-item" to={"/login"}>Logout</Link>
+                                    </div>
                                 </ul>
                             </li>
+
 
                             {/* Profile */}
                             {/* <li className="nav-item">

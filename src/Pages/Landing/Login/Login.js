@@ -2,30 +2,28 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
-import { login } from "../../../services/user";
+import { loginAsync } from "../../../reduxStore/reducers/authSlice";
 
 const Login = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
 
-    const [loginData, setLoginData] = useState({
-        email: "",
-        password: "",
-    })
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
 
-    // handle login form changes
-    const handleChange = (event) => {
-        setLoginData({ ...loginData, [event.target.name]: event.target.value })
-    }
+  const handleChange = (event) => {
+    setLoginData({ ...loginData, [event.target.name]: event.target.value });
+  };
 
-    // handle login form
-    const handleLogin = async (event) => {
-        event.preventDefault()
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
-        dispatch(login(loginData))
-        navigate("/dashboard", { replace: true })
-    }
-
+    await dispatch(loginAsync(loginData.email, loginData.password, token));
+    navigate("../dashboard", { replace: true });
+  };
     return (
         <section className="home-header">
             <div className="container">

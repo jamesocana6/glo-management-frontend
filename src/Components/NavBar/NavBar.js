@@ -1,65 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Person } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAsync } from "../../reduxStore/reducers/authSlice";
+import {
+  fetchChaptersAsync,
+  selectChapters,
+  selectIsLoading,
+  selectError,
+} from "../../reduxStore/reducers/chapterSlice";
 import "./style.css";
-import kplLogo from "../../assets/kplLogo.png"
+import kplLogo from "../../assets/kplLogo.png";
 
 const NavBar = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const token = useSelector(state => state.auth.token);
+  const token = useSelector((state) => state.auth.token);
+  const chapters = useSelector(selectChapters);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
-    const [chapters, setChapters] = useState(null)
-    const [logoutState, setLogoutState] = useState(false)
+  useEffect(() => {
+    dispatch(fetchChaptersAsync());
+  }, [dispatch]);
 
-    const getChapters = async () => {
-        const response = await fetch("http://localhost:8000/api/chapters/")
-        const data = await response.json()
-
-        setChapters(data)
+  const handleLogout = async (token) => {
+    try {
+      await dispatch(logoutAsync(token));
+      navigate("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
+  };
 
-    useEffect(() => {
-        if (logoutState) {
-            dispatch(logoutAsync(token))
-            navigate("/login")
-        }
-    }, [logoutState, dispatch, navigate])
+  const loaded = () => {
+    const chapterNames = Object.values(chapters).map((chapter) => (
+      <li key={chapter.id}>
+        <a className="dropdown-item" href="#">
+          {chapter.chapter_school_txt}
+        </a>
+      </li>
+    ));
+    return <ul className="dropdown-menu">{chapterNames}</ul>;
+  };
+  
 
-    const loaded = () => {
-        let allChapters = chapters.map((chapter) => {
-            return (
-                <li key={chapter.id}><a className="dropdown-item" href="#">{chapter.chapter_school_txt}</a></li>
-            )
-        })
-
-        return (
-            <ul className="dropdown-menu">
-                {allChapters}
-            </ul>
-        )
-    }
-
-    const loading = () => {
-        return (
-            <ul>
-                <li>Loading Chapter...</li>
-            </ul>
-        )
-    }
-
-    const handleLogout = async (token) => {
-        try {
-            await dispatch(logoutAsync(token));
-            navigate("/login");
-        } catch (error) {
-            console.error("Error logging out:", error);
-        }
-    };
-
+  const loading = () => {
+    return (
+      <ul>
+        <li>Loading Chapter...</li>
+      </ul>
+    );
+  };
     return (
         <div>
             <nav className="navbar navbar-expand-lg" style={{ padding: '2px' }}>

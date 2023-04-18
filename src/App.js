@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes, useNavigate, Navigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserAsync } from "./reduxStore/reducers/authSlice";
+import { fetchModelChoicesAsync } from "./reduxStore/reducers/modelChoicesSlice";
 import Login from './Pages/Landing/Login/Login';
 import Landing from './Pages/Landing/Landing';
 import MemberDashboard from './Pages/MemberDashboard/MemberDashboard';
@@ -30,21 +31,24 @@ function App() {
 
   const navigate = useNavigate();
   const { user, token, isLoading } = useSelector((state) => state.auth);
+  const modelChoices = useSelector((state) => state.modelChoices);
   const dispatch = useDispatch();
-  console.log(token, user)
+  // console.log(token, user)
+
 
   useEffect(() => {
     if (!token) {
       navigate("/login");
     } else {
       dispatch(fetchUserAsync(token));
+      dispatch(fetchModelChoicesAsync());
     }
   }, [dispatch, navigate, token]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Add a loading state
+    return <div>Loading...</div>; 
   }
-
+  console.log(modelChoices)
   return (
     <div className="App">
       {token && user ? (

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, fetchUser, logout } from "../../api/authApi";
-import { API_BASE_URL } from "../../utils/constants"
+
 
 const initialState = {
   user: null,

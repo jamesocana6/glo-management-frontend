@@ -1,48 +1,35 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-const MemberInfo = ({ props }) => {
-    // mock info, this should come from props
-    const [memberInfo, setMemberInfo] = useState(
-        [
-            {
-                crossingSchool: 'NYU',
-                crossingClass: 'Beta',
-                currentSchool: 'N/A',
-                currentPosition: 'N/A',
-                previousPosition: 'N/A',
-            },
-        ]
-    )
 
+const MemberInfo = () => {
+
+    const user = useSelector((state) => state.auth.user);
+    const modelChoices = useSelector(state => state.modelChoices.choices);
+    const chapters = useSelector(state => state.chapters.chapters);
+    console.log(chapters)
 
     return (
         <div>
-            <h3 className="dashboard-component-title">Member Info</h3>
-            {memberInfo.map((member) => {
-                const key = `${member.crossingSchool}-${member.crossingClass}`;
-                return (
-                    <div key={key}>
-                        <ul className="member-info">
-                            <li>
-                                Crossing School: {member.crossingSchool}
-                            </li>
-                            <li>
-                                Crossing Class: {member.crossingClass}
-                            </li>
-                            <li>
-                                Current School: {member.currentSchool}
-                            </li>
-                            <li>
-                                Current Position: {member.currentPosition}
-                            </li>
-                            <li>
-                                Previous Position: {member.previousPosition}
-                            </li>
-                        </ul>
-                    </div>
-                )
-            })}
-        </div>
+            <h3 className="dashboard-component-title">Hello, {user.member_nb.nickname_txt} !</h3>
+                <ul className="member-info">
+                    <li>
+                        Current Status: {modelChoices.STATUS[user.member_nb.status_txt]}
+                    </li>
+                    <li>
+                        Current School: {chapters[user.member_nb.chapter_nb].chapter_school_txt}
+                    </li>
+                    <li>
+                        Crossing School: {user.member_nb.crossing_chapter_nb}
+                    </li>
+                    <li>
+                        Crossing Class: {modelChoices.GREEK_CLASS[user.member_nb.crossing_class_txt]}
+                    </li>
+                    <li>
+                        Experiences:
+                    </li>
+                </ul>
+            </div>
     )
 }
 

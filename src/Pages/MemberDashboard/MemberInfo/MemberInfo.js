@@ -6,8 +6,8 @@ const MemberInfo = () => {
 
     const user = useSelector((state) => state.auth.user);
     const modelChoices = useSelector(state => state.modelChoices.choices);
-    const chapters = useSelector(state => state.chapters);
-    console.log(chapters[1])
+    const chapters = useSelector(state => state.chapters.chapters);
+    console.log(chapters)
 
     return (
         <div>
@@ -17,7 +17,7 @@ const MemberInfo = () => {
                         Current Status: {modelChoices.STATUS[user.member_nb.status_txt]}
                     </li>
                     <li>
-                        Current School: {user.member_nb.chapter_nb}
+                        Current School: {chapters[user.member_nb.chapter_nb].chapter_school_txt}
                     </li>
                     <li>
                         Crossing School: {user.member_nb.crossing_chapter_nb}

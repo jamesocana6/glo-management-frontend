@@ -8,9 +8,13 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import { authReducer, fetchUserAsync } from './reduxStore/reducers/authSlice';
+import { modelChoicesReducer } from './reduxStore/reducers/modelChoicesSlice';
+import { chaptersReducer } from './reduxStore/reducers/chapterSlice';
 
 const rootReducer = combineReducers({
-  auth: authReducer, // Use authSlice in the combineReducers function
+  auth: authReducer, 
+  modelChoices: modelChoicesReducer,
+  chapters: chaptersReducer,
 });
 
 // Retrieve the persisted state from local storage

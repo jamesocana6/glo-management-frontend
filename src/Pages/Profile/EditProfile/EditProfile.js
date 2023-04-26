@@ -1,33 +1,37 @@
 import React, { useState } from 'react'
+import { useSelector } from "react-redux";
 
 const EditProfile = () => {
+
+    const user = useSelector((state) => state.auth.user.member_nb);
     // Need to fix Coach Boolean values - Line 404
 
     const [profile, setProfile] = useState({
-        first_name_txt: "Eli",
-        last_name_txt: "Cho",
-        nickname_txt: "Wiz",
-        nickname_meaning_txt: "Wizard",
-        chapter_nb: "1",
-        crossing_chapter: "1",
-        crossing_className_txt: "Delta",
-        crossing_date: "1995-03-09",
-        initiation_date: "1995-01-01",
-        line_number: "1",
-        big_member_nb: "1",
-        tree: "Wizard",
-        status_txt: "AL",
-        current_city: "San Francisco",
-        current_state: "CA",
-        current_country: "USA",
-        email_address: "eli@cho.com",
-        coach: false,
-        current_position: "Software Engineer",
-        current_company: "Microsoft",
-        linkedin_url: "linkedin.com/ec",
-        expertise_interests: "none",
-        summary: "something about profile"
-    })
+        first_name_txt: user.first_name_txt || "",
+        last_name_txt: user.last_name_txt || "",
+        nickname_txt: user.nickname_txt || "",
+        nickname_meaning_txt: user.nickname_meaning_txt || "",
+        chapter_nb: user.chapter_nb || "",
+        crossing_chapter: user.crossing_chapter_nb || "",
+        crossing_className_txt: user.crossing_class_txt || "",
+        crossing_date: user.crossing_date || "",
+        initiation_date: user.initiation_date || "",
+        line_number: user.line_nb || "",
+        big_member_nb: user.big_nb || "",
+        tree: user.tree_txt || "",
+        status_txt: user.status_txt || "",
+        current_city: user.current_city_txt || "",
+        current_state: user.current_state_txt || "",
+        current_country: user.current_country_txt || "",
+        email_address: user.email_address_txt || "",
+        coach: user.coach_fg || "",
+        current_position: user.current_position_txt || "",
+        current_company: user.current_company_txt || "",
+        linkedin_url: user.linkedin_url_txt || "",
+        expertise_interests: user.expertise_interests_nb || "",
+        summary: user.summary_txt || "",
+    });
+
 
     const handleProfileChange = (event) => {
         console.log(event.target.value)

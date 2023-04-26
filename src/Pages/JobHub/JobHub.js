@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Banner from "../../Components/Banner/Banner";
-import NavBar from "../../Components/NavBar/NavBar";
 import JobArea from "./JobArea/JobArea";
+import { API_BASE_URL } from "../../utils/constants"
 
 const JobHub = ({ resources, title }) => {
 
     const [jobsList, setJobsList] = useState(null)
 
     const getJobsList = async () => {
-        const response = await fetch("http://localhost:8000/api/jobs/")
+        const response = await fetch(`${API_BASE_URL}/api/jobs/recent`)
         const data = await response.json()
 
         setJobsList(data)
@@ -17,7 +17,6 @@ const JobHub = ({ resources, title }) => {
     return (
         <>
             <div>
-                <NavBar />
                 <Banner
                     bannerText={"JobHub Page"}
                 />

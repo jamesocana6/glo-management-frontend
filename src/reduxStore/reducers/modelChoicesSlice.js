@@ -64,5 +64,8 @@ export const fetchModelChoicesAsync = () => (dispatch) => {
         });
 };
 
+export const selectModelChoices = (state) => state.modelChoices.choices;
+export const selectIsLoading = (state) => state.modelChoices.isLoading;
+export const selectError = (state) => state.modelChoices.error;
 
 export const modelChoicesReducer = modelChoicesSlice.reducer;

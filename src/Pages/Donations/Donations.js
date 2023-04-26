@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../../Components/NavBar/NavBar";
 import Banner from "../../Components/Banner/Banner";
 import PaymentForm from "../../Components/Payments/PaymentForm";
 import CheckoutForm from "../../Components/Payments/CheckoutForm";
@@ -7,7 +6,6 @@ import CheckoutForm from "../../Components/Payments/CheckoutForm";
 const Donations = () => {
     return (
         <div>
-            <NavBar />
             <Banner bannerText={"Donations"} />
 
             <div className="container">

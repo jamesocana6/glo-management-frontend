@@ -3,7 +3,6 @@ import React from "react";
 import Announcements from "../../Components/Announcements/Annoucements";
 import MemberInfo from "./MemberInfo/MemberInfo"
 import { Link } from 'react-router-dom'
-import NavBar from "../../Components/NavBar/NavBar";
 import Resources from "../../Components/Resources/Resources";
 
 
@@ -11,7 +10,6 @@ import Resources from "../../Components/Resources/Resources";
 const MemberDashboard = ({ resources, title, token }) => {
     return (
         <>
-            <NavBar token={token}/>
             <div className="container-fluid">
                 <div className="row m-3 member-dashboard-row">
                     <div className="col-4 m-3 member-dashboard-col">

@@ -1,7 +1,11 @@
 import React from "react";
 import { Building, GeoAltFill, Link } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
+import { selectModelChoices } from "../../../reduxStore/reducers/modelChoicesSlice"
 
 const JobModal = ({post, postIdx}) => {
+    const modelChoices = useSelector(selectModelChoices)
+    const JOB_LEVEL = modelChoices.JOB_LEVEL
 
     return (
         <div className="modal fade" id={"jobModal"+post.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -10,7 +14,7 @@ const JobModal = ({post, postIdx}) => {
                     <div className="modal-header">
                         <img src="https://imgur.com/JBZZxqT.jpg" alt="placeholder" style={{ width: 200, paddingRight: 20 }} />
                         <div className="modal-title fs-5" id="exampleModalLabel">
-                            <h2>{post.job_title_txt} - {post.level_of_opening_txt}</h2>
+                            <h2>{post.job_title_txt} - {JOB_LEVEL[post.level_of_opening_txt]}</h2>
                             <h3>
                                 <Building size={25} className="m-2"/>{post.company_name_txt}
                             </h3>

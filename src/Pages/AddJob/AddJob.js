@@ -1,22 +1,15 @@
 import React from "react";
 import Banner from "../../Components/Banner/Banner";
-import NavBar from "../../Components/NavBar/NavBar";
-
-let JOB_LEVEL = [
-    ["00", "Internship"],
-    ["01", "Entry"],
-    ["02", "Associate"],
-    ["03", "Analyst"],
-    ["04", "Specialist"],
-    ["05", "Manager"],
-    ["06", "Senior Manager"],
-    ["07", "Director"],
-    ["08", "Senior Director"],
-    ["09", "Executive"],
-]
+import { useSelector } from "react-redux";
+import { selectModelChoices } from "../../reduxStore/reducers/modelChoicesSlice"
+import { API_BASE_URL } from "../../utils/constants"
 
 const AddJob = () => {
-    const postURL = `http://localhost:8000/api/jobs/`
+    const user = useSelector((state) => state.auth.user);
+    
+    const modelChoices = useSelector(selectModelChoices)
+    const JOB_LEVEL = modelChoices.JOB_LEVEL
+    const postURL = `${API_BASE_URL}/api/jobs/`
 
     const createPost = async (post) => {
         await fetch(postURL, {
@@ -28,11 +21,9 @@ const AddJob = () => {
         })
     }
 
-    const experienceOptions = JOB_LEVEL.map((level) => {
-        return (
-            <option value={level[0]}>{level[1]}</option>
-        )
-    })
+    const experienceOptions = Object.entries(JOB_LEVEL).map(([value, label]) => {
+        return <option value={value}>{label}</option>;
+      });
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -45,17 +36,14 @@ const AddJob = () => {
             formJson.remote_role_fg = false
         }
         //ADD poster_nb from user logged in
-        // if (sisters) {
-        //     formJson["poster_nb"] = sisters[0].id;
+        formJson["poster_nb"] = user.member_nb.id
 
-        // }
         createPost(formJson);
         console.log(formJson);
     }
 
     return (
         <div>
-            <NavBar />
             <Banner bannerText={"Add a Job"} />
             <div className="container">
                 <form method="post" onSubmit={handleSubmit}>

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
+import { selectChapters } from "../../../reduxStore/reducers/chapterSlice"
+import { selectModelChoices } from "../../../reduxStore/reducers/modelChoicesSlice"
 
 
 const MemberInfo = () => {
 
     const user = useSelector((state) => state.auth.user);
-    const modelChoices = useSelector(state => state.modelChoices.choices);
-    const chapters = useSelector(state => state.chapters.chapters);
-    console.log(chapters)
+    const modelChoices = useSelector(selectModelChoices);
+    const chapters = useSelector(selectChapters)
+
 
     return (
         <div>

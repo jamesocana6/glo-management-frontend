@@ -1,5 +1,7 @@
+import { API_BASE_URL } from "../utils/constants"
+
 export const getCSRFToken = async () => {
-    const response = await fetch('http://localhost:8000/api-auth/csrf/', {
+    const response = await fetch(`${API_BASE_URL}/api-auth/csrf/`, {
       method: 'GET',
       credentials: 'include',
     });

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import Banner from "../../Components/Banner/Banner";
-import NavBar from "../../Components/NavBar/NavBar";
 import CoachArea from "./CoachArea/CoachArea";
 import CoachFilter from "./CoachFilter/CoachFilter";
 
@@ -89,7 +88,6 @@ const FindCoach = () => {
 
     return (
         <div>
-            <NavBar />
             <Banner bannerText={"Find a Coach"} />
             <CoachFilter
                 handleFilterChange={handleFilterChange}

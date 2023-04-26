@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useNavigate, Navigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserAsync } from "./reduxStore/reducers/authSlice";
 import { fetchModelChoicesAsync } from "./reduxStore/reducers/modelChoicesSlice";
-import Login from './Pages/Landing/Login/Login';
 import Landing from './Pages/Landing/Landing';
 import MemberDashboard from './Pages/MemberDashboard/MemberDashboard';
 import Profile from './Pages/Profile/Profile';
@@ -12,6 +11,8 @@ import FindCoach from './Pages/FindCoach/FindCoach';
 import JobHub from './Pages/JobHub/JobHub';
 import AddJob from './Pages/AddJob/AddJob';
 import Donations from './Pages/Donations/Donations';
+import NavBar from './Components/NavBar/NavBar';
+import ChapterDetail from "./Pages/Chapter/ChapterDetail";
 
 import './App.css';
 
@@ -31,9 +32,8 @@ function App() {
 
   const navigate = useNavigate();
   const { user, token, isLoading } = useSelector((state) => state.auth);
-  const modelChoices = useSelector((state) => state.modelChoices);
   const dispatch = useDispatch();
-  // console.log(token, user)
+  console.log( user)
 
 
   useEffect(() => {
@@ -48,10 +48,12 @@ function App() {
   if (isLoading) {
     return <div>Loading...</div>; 
   }
-  console.log(modelChoices)
+
   return (
     <div className="App">
       {token && user ? (
+        <>
+        <NavBar />
         <Routes>
           <Route path="/dashboard" element={<MemberDashboard resources={resources.national} token={token} />} />
           <Route path="/findcoach" element={<FindCoach />} />
@@ -60,8 +62,11 @@ function App() {
           <Route path="/jobhub/add" element={<AddJob />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/donations" element={<Donations />} />
+          <Route path="/chapter" element={<ChapterDetail />} />
+          <Route path="/chapter/:id" element={<ChapterDetail />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
+        </>
       ) : (
         <Routes>
           <Route path="/login" element={<Landing />} />

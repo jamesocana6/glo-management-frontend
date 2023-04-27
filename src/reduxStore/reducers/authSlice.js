@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, fetchUser, logout } from "../../api/authApi";
+import { login, fetchUser, logout } from "../../actions/authApi";
 
 
 const initialState = {
@@ -44,15 +44,16 @@ export const { setUser, clearUser, setError, clearError, setLoading } =
       const { token } = await login(email, password);
       localStorage.setItem('token', token); // store token in localStorage
       dispatch(setUser({ token }));
-      console.log('setUser action dispatched:', { token });
-      console.log('login successful:', { token });
+      console.log('setUser action dispatched with payload:', { token });
+      console.log('login successful with payload:', { token });
     } catch (error) {
-      console.log('login failed:', error);
+      console.log('login failed with error:', error);
       dispatch(setError(error.message));
     } finally {
       dispatch(setLoading(false));
     }
   };
+  
   
   
 export const fetchUserAsync = () => async (dispatch, getState) => {

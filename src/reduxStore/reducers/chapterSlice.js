@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getChapters } from '../../api/chapterApi';
+import { getChapters } from '../../actions/chapterApi';
 
 const initialState = {
   chaptersById: {},

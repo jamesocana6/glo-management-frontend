@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getModelChoices } from '../../api/modelChoicesApi';
+import { getModelChoices } from '../../actions/modelChoicesApi';
 
 const initialState = {
     choices: null,

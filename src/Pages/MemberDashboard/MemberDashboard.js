@@ -1,7 +1,7 @@
 import React from "react";
-
-import Announcements from "../../Components/Announcements/Annoucements";
 import MemberInfo from "./MemberInfo/MemberInfo"
+import Announcements from "../../Components/Announcements/Annoucements";
+import Events from "../../Components/Events/Events"
 import { Link } from 'react-router-dom'
 import Resources from "../../Components/Resources/Resources";
 
@@ -26,7 +26,7 @@ const MemberDashboard = ({ resources, title, token }) => {
                     <div className="col-4 m-3 member-dashboard-col">
                         <h3 className="dashboard-component-title">National Resources</h3>
                         <ul className="national-resources">
-                            <Resources resources={resources}/>
+                            <Resources resources={resources} />
                             <li>
                                 <Link to="../findcoach">Find a Coach</Link>
                             </li>
@@ -39,9 +39,8 @@ const MemberDashboard = ({ resources, title, token }) => {
                         </ul>
 
                     </div>
-
                     <div className="col m-3 member-dashboard-col">
-                        <Announcements />
+                        <Events />
                         {/* props = national */}
                     </div>
                 </div>

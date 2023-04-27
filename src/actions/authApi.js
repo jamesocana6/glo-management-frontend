@@ -1,28 +1,28 @@
-import { getCSRFToken } from '../utils/csrf';
 import { API_BASE_URL } from "../utils/constants"
 import axios from 'axios';
 
 
 export const login = async (email, password) => {
-    const csrfToken = await getCSRFToken(); // get the CSRF token from the backend
-    const response = await fetch(`${API_BASE_URL}/api/accounts/login/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken, // include the CSRF token in the headers
-      },
-      body: JSON.stringify({ email, password }),
-    });
-  
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.detail);
-    }
-  
-    const data = await response.json();
-    const { token } = data;
-    return { token };
-  };
+  const response = await fetch(`${API_BASE_URL}/api/accounts/login/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+    meta: { requiresAuth: true }, 
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail);
+  }
+
+  const data = await response.json();
+  const { token } = data;
+  return { token };
+};
+
+
 
   
   export const fetchUser = async (token) => {

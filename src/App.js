@@ -13,6 +13,7 @@ import AddJob from './Pages/AddJob/AddJob';
 import Donations from './Pages/Donations/Donations';
 import NavBar from './Components/NavBar/NavBar';
 import ChapterDetail from "./Pages/Chapter/ChapterDetail";
+import ChapterAddEdit from "./Pages/Chapter/ChapterAddEdit";
 
 import './App.css';
 
@@ -33,7 +34,7 @@ function App() {
   const navigate = useNavigate();
   const { user, token, isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log( user)
+  // console.log(user)
 
 
   useEffect(() => {
@@ -63,6 +64,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/donations" element={<Donations />} />
           <Route path="/chapter" element={<ChapterDetail />} />
+          <Route path="/chapter/add" element={<ChapterAddEdit />} />
           <Route path="/chapter/:id" element={<ChapterDetail />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>

@@ -3,8 +3,7 @@ import JobOps from "../JobOps/JobOps";
 import Resources from "../../../Components/Resources/Resources.js"
 import "./style.css";
 
-const JobArea = ({ jobsList, getJobsList, resources, title }) => {
-    console.log(resources)
+const JobArea = ({ jobsList, resources, title }) => {
     return (
         <div className="container">
             <div className="row gx-5">
@@ -14,7 +13,6 @@ const JobArea = ({ jobsList, getJobsList, resources, title }) => {
                     <div className="job-ops">
                         <JobOps
                             jobsList={jobsList}
-                            getJobsList={getJobsList}
                         />
                     </div>
                 </div>

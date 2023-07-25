@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
 import { loginAsync } from "../../../reduxStore/reducers/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -21,7 +19,7 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    await dispatch(loginAsync(loginData.email, loginData.password, token));
+    await dispatch(loginAsync(loginData.email, loginData.password));
     navigate("../dashboard", { replace: true });
   };
     return (

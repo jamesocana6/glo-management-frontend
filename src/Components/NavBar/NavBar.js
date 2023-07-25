@@ -27,12 +27,12 @@ const NavBar = () => {
     const loaded = () => {
         if (!chapters) return [];
         const chapterLinks = Object.values(chapters).map((chapter) => (
-          <Link className="dropdown-item" to={`/chapter/${chapter.id}`} chapter_nb={chapter.chapter_nb}>
-            {chapter.chapter_school_txt}
-          </Link>
+            <Link className="dropdown-item" to={`/chapter/${chapter.id}`} chapter_nb={chapter.chapter_nb}>
+                {chapter.chapter_school_txt}
+            </Link>
         ));
         return <ul className="dropdown-menu">{chapterLinks}</ul>;
-      };
+    };
 
     const loading = () => {
         return (
@@ -51,15 +51,15 @@ const NavBar = () => {
                     </Link>
                     <div>
                         <ul className="navbar-nav justify-content-end">
-                            
+
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     National Administration
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li>&nbsp;Chapter Administration</li>
-                                    <li><a className="dropdown-item" href="#">Add a Chapter</a></li>
-                                    <li><a className="dropdown-item" href="#">Change Status</a></li>
+                                    <Link className="dropdown-item" to={"/chapter/add"}>Add a Chapter</Link>
+                                    <Link className="dropdown-item" to={"/national/chapters"}>Change Status</Link>
                                     <li>&nbsp;Member Administration</li>
                                     <li><a className="dropdown-item" href="#">Manage Users</a></li>
                                     <li><a className="dropdown-item" href="#">Disaffiliation Process</a></li>
@@ -72,8 +72,10 @@ const NavBar = () => {
                                     Chapter Administration
                                 </a>
                                 <ul className="dropdown-menu">
-                                <Link className="dropdown-item" to={`/chapter/`}>Roster</Link>
+                                    <Link className="dropdown-item" to={`/chapter/`}>Current Roster</Link>
+                                    <li><a className="dropdown-item" href="#">PNM Administration</a></li>
                                     <li><a className="dropdown-item" href="#">Announcements</a></li>
+
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -110,7 +112,7 @@ const NavBar = () => {
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="#">Sxster's Businesses</a></li>
-                                    <li><a className="dropdown-item" href="#">Become a Coach</a></li>
+                                    <li><a className="dropdown-item" href="#">Connect</a></li>
                                     <li><a className="dropdown-item" href="#">Join National Leadership</a></li>
                                     <Link className="dropdown-item" to={"/donations"}>Donate</Link>
                                 </ul>

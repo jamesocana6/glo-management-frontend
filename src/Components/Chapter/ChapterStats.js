@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { API_BASE_URL } from "../../utils/constants"
 import Roster from "../Roster/Roster";
+import { useSelector } from "react-redux";
+import { selectModelChoices } from "../../reduxStore/reducers/modelChoicesSlice"
 
 
 const ChapterStats = ({ chapter_nb }) => {
     const [chapterDetail, setChapterDetail] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const modelChoices = useSelector(selectModelChoices);
 
     useEffect(() => {
         async function getChapterDetail() {
@@ -21,7 +24,6 @@ const ChapterStats = ({ chapter_nb }) => {
         getChapterDetail();
     }, [chapter_nb]);
 
-    console.log(chapterDetail)
     return (
         <div className="container">
             <h1>Chapter Stats Component</h1>
@@ -38,7 +40,9 @@ const ChapterStats = ({ chapter_nb }) => {
                     <p>City, State: {chapterDetail.city_state_txt}</p>
                     <p>Original Founding Date: {chapterDetail.original_founding_date}</p>
                     <p>Recharter Date: {chapterDetail.recharter_date ? chapterDetail.recharter_date : 'N/A'}</p>
-                    <p>Chapter Status: {chapterDetail.chapter_status_txt}</p>
+                    <p>Chapter Status: {modelChoices.CHAPTER_STATUS[chapterDetail.chapter_status_txt]}</p>
+                    <p>Chapter Website: {chapterDetail.org_website_txt}</p>
+                    <p>School Website: {chapterDetail.school_website_txt}</p>
                     <h2>Chapter Stats</h2>
                     <p>Active Members: {chapterDetail.chapter_stats.active_nb}</p>
                     <p>Inactive Members: {chapterDetail.chapter_stats.inactive_nb}</p>

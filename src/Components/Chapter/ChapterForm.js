@@ -7,6 +7,9 @@ const ChapterForm = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      if (!values.school_website_txt) {
+        delete values.school_website_txt;
+      }
       const response = await fetch(`${API_BASE_URL}/api/chapters/`, {
         method: 'POST',
         headers: {
@@ -26,7 +29,7 @@ const ChapterForm = () => {
       setSubmitting(false);
     }
   };
-
+  
 
   const initialValues = {
     associate_chapter_fg: true,
@@ -41,7 +44,7 @@ const ChapterForm = () => {
   const validationSchema = Yup.object({
     chapter_school_txt: Yup.string().required("Chapter school is required"),
     city_state_txt: Yup.string().required("City and state are required"),
-    original_founding_date: Yup.date().required("Original founding date is required"),
+    original_founding_date: Yup.date().required("Founding date is required"),
     org_website_txt: Yup.string().required("Organization website is required"),
   })
 

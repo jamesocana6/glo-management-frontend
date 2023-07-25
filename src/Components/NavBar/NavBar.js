@@ -59,7 +59,7 @@ const NavBar = () => {
                                 <ul className="dropdown-menu">
                                     <li>&nbsp;Chapter Administration</li>
                                     <Link className="dropdown-item" to={"/chapter/add"}>Add a Chapter</Link>
-                                    <li><a className="dropdown-item" href="#">Change Status</a></li>
+                                    <Link className="dropdown-item" to={"/national/chapters"}>Change Status</Link>
                                     <li>&nbsp;Member Administration</li>
                                     <li><a className="dropdown-item" href="#">Manage Users</a></li>
                                     <li><a className="dropdown-item" href="#">Disaffiliation Process</a></li>
@@ -112,7 +112,7 @@ const NavBar = () => {
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="#">Sxster's Businesses</a></li>
-                                    <li><a className="dropdown-item" href="#">Become a Coach</a></li>
+                                    <li><a className="dropdown-item" href="#">Connect</a></li>
                                     <li><a className="dropdown-item" href="#">Join National Leadership</a></li>
                                     <Link className="dropdown-item" to={"/donations"}>Donate</Link>
                                 </ul>

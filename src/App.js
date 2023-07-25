@@ -14,6 +14,7 @@ import Donations from './Pages/Donations/Donations';
 import NavBar from './Components/NavBar/NavBar';
 import ChapterDetail from "./Pages/Chapter/ChapterDetail";
 import ChapterAddEdit from "./Pages/Chapter/ChapterAddEdit";
+import AllChapters from "./Pages/Chapter/AllChapters"
 
 import './App.css';
 
@@ -65,6 +66,7 @@ function App() {
           <Route path="/donations" element={<Donations />} />
           <Route path="/chapter" element={<ChapterDetail />} />
           <Route path="/chapter/add" element={<ChapterAddEdit />} />
+          <Route path="/national/chapters" element={<AllChapters />} />
           <Route path="/chapter/:id" element={<ChapterDetail />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>

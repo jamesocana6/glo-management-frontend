@@ -11,7 +11,7 @@ const AddJob = () => {
     const JOB_LEVEL = modelChoices.JOB_LEVEL
     const postURL = `${API_BASE_URL}/api/jobs/`
 
-    const createPost = async (post) => {
+    const createJobPost = async (post) => {
         await fetch(postURL, {
             method: "POST",
             headers: {
@@ -38,7 +38,7 @@ const AddJob = () => {
         //ADD poster_nb from user logged in
         formJson["poster_nb"] = user.member_nb.id
 
-        createPost(formJson);
+        createJobPost(formJson);
         console.log(formJson);
     }
 

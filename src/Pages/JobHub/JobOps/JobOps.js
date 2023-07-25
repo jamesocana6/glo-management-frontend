@@ -1,16 +1,12 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectModelChoices } from "../../../reduxStore/reducers/modelChoicesSlice";
 import JobModal from "../JobModal/JobModal";
 
-const JobOps = ({ jobsList, getJobsList }) => {
+const JobOps = ({ jobsList }) => {
   const modelChoices = useSelector(selectModelChoices);
   const JOB_LEVEL = modelChoices.JOB_LEVEL;
-
-  useEffect(() => {
-    getJobsList();
-  }, [getJobsList]);
 
   const loaded = () => {
     let allJobs = jobsList.map((job, index) => (

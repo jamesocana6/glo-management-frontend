@@ -3,7 +3,7 @@ This Member Management Portal is designed for Nonprofit Greek Organizations, for
 
 This repo is the **React Frontend Client** for a backend available [here]( https://github.com/sylvialchen/glo-management-backend)
 
-##Technologies/Libraries Used
+## Technologies/Libraries Used
 React
 Redux
 Bootstrap
